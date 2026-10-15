@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="https://www.gitskins.com/api/section/wordmark?username=MariusBurgerDevelopment&theme=cyber&label=MARIUS%20BURGER" width="100%" alt="3D ASCII Wordmark: MARIUS BURGER" />
-</p>
-
 <!-- ======================================================== -->
 <!-- CYBERPUNK TERMINAL HUD: DUAL THEME HERO (DARK / LIGHT)   -->
 <!-- ======================================================== -->
@@ -47,29 +43,12 @@
       <img src="https://github-readme-streak-stats.herokuapp.com/?user=MariusBurgerDevelopment&theme=tokyonight&background=0b1120&ring=22d3ee&fire=22d3ee&currStreakLabel=10b981&sideLabels=38bdf8&dates=64748b&border_radius=14&border=22d3ee" width="100%" alt="Marius GitHub Streak" />
     </td>
   </tr>
+  <tr>
+    <td colspan="2" align="center" style="border: none; padding: 6px;">
+      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=MariusBurgerDevelopment&layout=compact&theme=tokyonight&bg_color=0b1120&title_color=22d3ee&text_color=e5e7eb&border_color=22d3ee&border_radius=14&hide_border=false" width="100%" alt="Marius Top Languages" />
+    </td>
+  </tr>
 </table>
-
-<br />
-
-<!-- ======================================================== -->
-<!-- ANIMATED LANGUAGE STACK                                  -->
-<!-- ======================================================== -->
-<p align="center">
-  <img src="https://www.gitskins.com/api/section/stack?username=MariusBurgerDevelopment&theme=cyber" width="100%" alt="Marius Language Stack" />
-</p>
-
-<br />
-
-<!-- ======================================================== -->
-<!-- ARCADE REPLAY / CHESS SIMULATION                         -->
-<!-- ======================================================== -->
-<details>
-  <summary><b>🎮 Arcade Mode // Autonomous Neural Chess Replay</b> (Click to Expand)</summary>
-  <br />
-  <p align="center">
-    <img src="https://www.gitskins.com/api/section/chess?username=MariusBurgerDevelopment&theme=cyber" width="100%" alt="Autonomous Chess Replay" />
-  </p>
-</details>
 
 <br />
 
@@ -154,6 +133,6 @@
 <!-- ======================================================== -->
 <p align="center">
   <sub>
-    ⚡ Designed &amp; Engineered by <b>Marius Burger</b> · Built with custom animated SVGs, real-time telemetry, and GitSkins.
+    ⚡ Designed &amp; Engineered by <b>Marius Burger</b> · Built with custom animated SVGs and real-time telemetry.
   </sub>
 </p>
