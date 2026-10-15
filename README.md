@@ -123,27 +123,6 @@
 
 <br />
 
-<!-- ======================================================== -->
-<!-- CURRENT OPERATIONS & R&D RADAR                           -->
-<!-- ======================================================== -->
-### 📡 Current Operations // R&D Radar
-
-```ascii
-┌── [OPERATION 01] SPATIAL 3D & PROCEDURAL GRAPHICS ─────────────────────┐
-│ Developing high-performance WebGL & Three.js spatial web environments   │
-│ Telemetry: React Three Fiber · GLSL Shaders · Blender 3D · Motion      │
-└────────────────────────────────────────────────────────────────────────┘
-┌── [OPERATION 02] AUTONOMOUS BOT PLATFORMS & MOBILE HOOKS ──────────────┐
-│ Engineering stealth web scrapers, reverse-engineered APIs & live bots   │
-│ Telemetry: Python · Playwright Stealth · UIAutomator2 · WebSockets     │
-└────────────────────────────────────────────────────────────────────────┘
-┌── [OPERATION 03] CLOUD ARCHITECTURES & FULL-STACK PLATFORMS ───────────┐
-│ Building distributed SSR platforms with secure payments and databases  │
-│ Telemetry: Next.js App Router · Supabase · Stripe · Redis · Docker     │
-└────────────────────────────────────────────────────────────────────────┘
-```
-
-<br />
 
 ```ascii
 ╔═══════════════════════════════════════════════════════════════════════════════╗
