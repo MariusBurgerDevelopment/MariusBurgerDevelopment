@@ -6,7 +6,6 @@ from html import escape
 with open("logo_ascii.txt", "r", encoding="utf-8") as f:
     portrait_lines = [l.rstrip("\r\n") for l in f.readlines()]
 
-# Pad or trim to exactly 53 lines, 91 chars
 while len(portrait_lines) < 53:
     portrait_lines.append(" " * 91)
 portrait_lines = portrait_lines[:53]
@@ -22,35 +21,100 @@ for i, line in enumerate(portrait_lines):
 
 portrait_tspans = "\n".join(tspans)
 
-# Define Dark SVG
+# Helper function to generate clean right-column lines without overflow
+def make_line(key, val, max_key_len=14):
+    dots_count = max(2, max_key_len - len(key))
+    dots = "." * dots_count
+    # Split key into components if it has a dot
+    if "." in key:
+        k1, k2 = key.split(".", 1)
+        key_markup = f'<tspan class="key">{escape(k1)}</tspan><tspan class="cc">.</tspan><tspan class="key">{escape(k2)}</tspan>'
+    else:
+        key_markup = f'<tspan class="key">{escape(key)}</tspan>'
+    return f'<tspan class="cc">. </tspan>{key_markup}<tspan class="cc">: {dots} </tspan><tspan class="value">{escape(val)}</tspan>'
+
+# Right column entries
+right_lines = [
+    # 0: header
+    '<tspan class="head">marius@devos</tspan><tspan class="cc"> -———————————————————————————————————-—-</tspan>',
+    # 1-6: info
+    make_line("Subject", "Marius Burger"),
+    make_line("Role", "Creative Technologist · Full-Stack Eng"),
+    make_line("Focus", "3D Web Experiences · UI/UX · Systems"),
+    make_line("Status", "Architecting • Innovating • Shipping"),
+    make_line("ToolChain", "VS Code, Blender, Three.js, Docker, Git"),
+    make_line("Origin", "Earth / Cyberspace"),
+    # 7: blank
+    '<tspan class="cc">. </tspan>',
+    # 8-13: core stack
+    make_line("Core.Lang", "TypeScript, JavaScript, Python, C++, GLSL"),
+    make_line("Core.Frontend", "React, Next.js, Three.js, Tailwind CSS"),
+    make_line("Core.Backend", "Node.js, Express.js, REST APIs, GraphQL"),
+    make_line("Core.Database", "PostgreSQL, MongoDB, Supabase, Redis"),
+    make_line("Core.3D/Motion", "Blender 3D, WebGL Shaders, Motion Design"),
+    make_line("Core.Infra", "Docker, Vercel, CI/CD, Microservices"),
+    # 14: subheader
+    '<tspan class="accent">- Neural Uplink</tspan><tspan class="cc"> -————————————————————————————————————-—-</tspan>',
+    # 15-18: uplink
+    make_line("Grid.Mail", "ragerp5iv@gmail.com"),
+    make_line("Grid.Github", "MariusBurgerDevelopment"),
+    make_line("Grid.Portfolio", "marius-port.vercel.app"),
+    make_line("Grid.Status", "Available for Visionary Builds"),
+    # 19: blank
+    '<tspan class="cc">. </tspan>',
+    # 20: telemetry header
+    '<tspan class="accent">- Live Telemetry</tspan><tspan class="cc"> -————————————————————————————————————-—-</tspan>',
+    # 21: telemetry info
+    '<tspan class="cc">. </tspan><tspan class="value">Radar locked on supersonic jet heatmap &amp; stats below ↓</tspan>',
+]
+
+# Build right column XML
+y_coords = [
+    42, 66, 88, 110, 132, 154, 176, 198,
+    220, 242, 264, 286, 308, 330,
+    352, 374, 396, 418, 440, 462,
+    484, 506
+]
+
+right_col_dark = []
+right_col_light = []
+for i, line_content in enumerate(right_lines):
+    y = y_coords[i]
+    right_col_dark.append(f'<g clip-path="url(#lc{i})"><text x="520" y="0" fill="#f4f4f5"><tspan x="520" y="{y}">{line_content}</text></g>')
+    right_col_light.append(f'<g clip-path="url(#lc{i})"><text x="520" y="0" fill="#18181b"><tspan x="520" y="{y}">{line_content}</text></g>')
+
+right_xml_dark = "\n  ".join(right_col_dark)
+right_xml_light = "\n  ".join(right_col_light)
+
+# Define Dark SVG in Crimson Red & Obsidian Logo Palette
 dark_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="610" viewBox="0 0 1180 610">
 <defs>
   <linearGradient id="asciiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-    <stop offset="0%" stop-color="#22D3EE">
-      <animate attributeName="stop-color" values="#22D3EE;#7C3AED;#38BDF8;#10B981;#22D3EE" dur="10s" repeatCount="indefinite"/>
+    <stop offset="0%" stop-color="#FF1E44">
+      <animate attributeName="stop-color" values="#FF1E44;#DC2626;#FF4757;#B91C1C;#FF1E44" dur="7s" repeatCount="indefinite"/>
     </stop>
-    <stop offset="100%" stop-color="#7C3AED">
-      <animate attributeName="stop-color" values="#7C3AED;#38BDF8;#10B981;#22D3EE;#7C3AED" dur="10s" repeatCount="indefinite"/>
+    <stop offset="100%" stop-color="#DC2626">
+      <animate attributeName="stop-color" values="#DC2626;#B91C1C;#FF1E44;#FF4757;#DC2626" dur="7s" repeatCount="indefinite"/>
     </stop>
   </linearGradient>
   <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-    <stop offset="0%" stop-color="#7C3AED"/>
-    <stop offset="50%" stop-color="#22D3EE"/>
-    <stop offset="100%" stop-color="#10B981"/>
+    <stop offset="0%" stop-color="#FF1E44"/>
+    <stop offset="50%" stop-color="#DC2626"/>
+    <stop offset="100%" stop-color="#991B1B"/>
   </linearGradient>
   <radialGradient id="bgGlow" cx="30%" cy="20%" r="80%">
-    <stop offset="0%" stop-color="#0B1120"/>
-    <stop offset="100%" stop-color="#050816"/>
+    <stop offset="0%" stop-color="#0E080A"/>
+    <stop offset="100%" stop-color="#050304"/>
   </radialGradient>
   <linearGradient id="scanGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-    <stop offset="0%" stop-color="#22D3EE" stop-opacity="0"/>
-    <stop offset="45%" stop-color="#22D3EE" stop-opacity="0.05"/>
-    <stop offset="50%" stop-color="#A5F3FC" stop-opacity="0.75"/>
-    <stop offset="55%" stop-color="#22D3EE" stop-opacity="0.05"/>
-    <stop offset="100%" stop-color="#7C3AED" stop-opacity="0"/>
+    <stop offset="0%" stop-color="#FF1E44" stop-opacity="0"/>
+    <stop offset="45%" stop-color="#FF1E44" stop-opacity="0.08"/>
+    <stop offset="50%" stop-color="#FFA4B6" stop-opacity="0.8"/>
+    <stop offset="55%" stop-color="#FF1E44" stop-opacity="0.08"/>
+    <stop offset="100%" stop-color="#DC2626" stop-opacity="0"/>
   </linearGradient>
   <pattern id="scanlines" width="4" height="4" patternUnits="userSpaceOnUse">
-    <rect width="4" height="1" fill="#7DD3FC" opacity="0.05"/>
+    <rect width="4" height="1" fill="#FF1E44" opacity="0.035"/>
   </pattern>
   <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
     <feGaussianBlur stdDeviation="4" result="blur"/>
@@ -88,16 +152,16 @@ dark_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="610"
   <clipPath id="lc21"><rect x="500" y="490.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.35s" begin="2.80s" fill="freeze"/></rect></clipPath>
   <style>
     .ascii  {{ font-family: 'Courier New', Consolas, monospace; font-size: 7.4px; fill: url(#asciiGrad); letter-spacing: -0.2px; }}
-    .key    {{ font-family: 'Courier New', Consolas, monospace; font-size: 15px; fill: #22D3EE; font-weight: bold; }}
-    .value  {{ font-family: 'Courier New', Consolas, monospace; font-size: 15px; fill: #E5E7EB; }}
-    .cc     {{ font-family: 'Courier New', Consolas, monospace; font-size: 15px; fill: #475569; }}
-    .head   {{ font-family: 'Courier New', Consolas, monospace; font-size: 17px; fill: #7C3AED; font-weight: bold; }}
-    .accent {{ font-family: 'Courier New', Consolas, monospace; font-size: 15px; fill: #10B981; font-weight: bold; }}
+    .key    {{ font-family: 'Courier New', Consolas, monospace; font-size: 13.5px; fill: #FF3355; font-weight: bold; }}
+    .value  {{ font-family: 'Courier New', Consolas, monospace; font-size: 13.5px; fill: #F4F4F5; }}
+    .cc     {{ font-family: 'Courier New', Consolas, monospace; font-size: 13.5px; fill: #52525B; }}
+    .head   {{ font-family: 'Courier New', Consolas, monospace; font-size: 16px; fill: #FF1E44; font-weight: bold; }}
+    .accent {{ font-family: 'Courier New', Consolas, monospace; font-size: 13.5px; fill: #EF4444; font-weight: bold; }}
     text, tspan {{ white-space: pre; }}
-    .term-label {{ font-family: 'Courier New', Consolas, monospace; font-size: 12px; fill: #64748B; letter-spacing: 0.5px; }}
-    .scan-label {{ font-family: 'Courier New', Consolas, monospace; font-size: 10px; fill: #10B981; letter-spacing: 1.5px; font-weight: bold; }}
-    .panel-title {{ font-family: 'Courier New', Consolas, monospace; font-size: 11px; fill: #38BDF8; letter-spacing: 2px; opacity: 0.8; font-weight: bold; }}
-    .cursor-blink {{ fill: #22D3EE; }}
+    .term-label {{ font-family: 'Courier New', Consolas, monospace; font-size: 12px; fill: #71717A; letter-spacing: 0.5px; }}
+    .scan-label {{ font-family: 'Courier New', Consolas, monospace; font-size: 10px; fill: #EF4444; letter-spacing: 1.5px; font-weight: bold; }}
+    .panel-title {{ font-family: 'Courier New', Consolas, monospace; font-size: 11px; fill: #FF3355; letter-spacing: 2px; opacity: 0.85; font-weight: bold; }}
+    .cursor-blink {{ fill: #FF1E44; }}
   </style>
 </defs>
 
@@ -105,20 +169,20 @@ dark_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="610"
 <rect width="1180" height="610" rx="18" fill="url(#scanlines)"/>
 
 <g id="titlebar">
-  <rect x="3" y="3" width="1174" height="34" rx="16" fill="#0B1120" fill-opacity="0.85"/>
+  <rect x="3" y="3" width="1174" height="34" rx="16" fill="#120A0D" fill-opacity="0.9"/>
   <circle cx="24" cy="20" r="5" fill="#EF4444"><animate attributeName="opacity" values="1;0.55;1" dur="4s" repeatCount="indefinite"/></circle>
   <circle cx="42" cy="20" r="5" fill="#F59E0B"><animate attributeName="opacity" values="1;0.55;1" dur="4s" begin="0.3s" repeatCount="indefinite"/></circle>
   <circle cx="60" cy="20" r="5" fill="#10B981"><animate attributeName="opacity" values="1;0.55;1" dur="4s" begin="0.6s" repeatCount="indefinite"/></circle>
   <text x="590" y="25" text-anchor="middle" class="term-label">marius@devos ~ % ./profile.sh --live</text>
-  <circle cx="1112" cy="20" r="4" fill="#10B981">
+  <circle cx="1112" cy="20" r="4" fill="#EF4444">
     <animate attributeName="opacity" values="1;0.2;1" dur="1.2s" repeatCount="indefinite"/>
   </circle>
   <text x="1122" y="24" class="scan-label">ONLINE</text>
 </g>
 
 <g transform="translate(0,38)">
-  <rect x="14" y="26" width="488" height="468" rx="14" fill="#0B1120" fill-opacity="0.4" stroke="url(#borderGrad)" stroke-width="1" opacity="0.4"/>
-  <rect x="508" y="10" width="655" height="500" rx="14" fill="#0B1120" fill-opacity="0.4" stroke="url(#borderGrad)" stroke-width="1" opacity="0.4"/>
+  <rect x="14" y="26" width="488" height="468" rx="14" fill="#0E080A" fill-opacity="0.5" stroke="url(#borderGrad)" stroke-width="1.2" opacity="0.6"/>
+  <rect x="508" y="10" width="655" height="500" rx="14" fill="#0E080A" fill-opacity="0.5" stroke="url(#borderGrad)" stroke-width="1.2" opacity="0.6"/>
   <text x="30" y="24" class="panel-title">VISUAL.MAP // EMBLEM DECK</text>
   <text x="524" y="24" class="panel-title">SYSTEM.INFO // NEURAL DECK</text>
 
@@ -128,40 +192,19 @@ dark_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="610"
     </text>
   </g>
 
-  <g clip-path="url(#lc0)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="42" class="head">marius@devos</tspan><tspan class="cc"> -——————————————————————————————————————————-—-</tspan></text></g>
-  <g clip-path="url(#lc1)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="66" class="cc">. </tspan><tspan class="key">Subject</tspan><tspan class="cc">: .......................... </tspan><tspan class="value">Marius Burger</tspan></text></g>
-  <g clip-path="url(#lc2)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="88" class="cc">. </tspan><tspan class="key">Role</tspan><tspan class="cc">: ............................. </tspan><tspan class="value">Creative Technologist · Full-Stack Eng</tspan></text></g>
-  <g clip-path="url(#lc3)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="110" class="cc">. </tspan><tspan class="key">Focus</tspan><tspan class="cc">: ............................ </tspan><tspan class="value">3D Web Experiences · UI/UX · Systems</tspan></text></g>
-  <g clip-path="url(#lc4)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="132" class="cc">. </tspan><tspan class="key">Status</tspan><tspan class="cc">: ........................... </tspan><tspan class="value">Architecting • Innovating • Shipping</tspan></text></g>
-  <g clip-path="url(#lc5)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="154" class="cc">. </tspan><tspan class="key">ToolChain</tspan><tspan class="cc">: ................. </tspan><tspan class="value">VS Code, Blender, Three.js, Docker, Git</tspan></text></g>
-  <g clip-path="url(#lc6)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="176" class="cc">. </tspan><tspan class="key">Origin</tspan><tspan class="cc">: ........................... </tspan><tspan class="value">Earth / Cyberspace</tspan></text></g>
-  <g clip-path="url(#lc7)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="198" class="cc">. </tspan></text></g>
-  <g clip-path="url(#lc8)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="220" class="cc">. </tspan><tspan class="key">Core</tspan><tspan class="cc">.</tspan><tspan class="key">Lang</tspan><tspan class="cc">: .......... </tspan><tspan class="value">TypeScript, JavaScript, Python, C++, GLSL</tspan></text></g>
-  <g clip-path="url(#lc9)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="242" class="cc">. </tspan><tspan class="key">Core</tspan><tspan class="cc">.</tspan><tspan class="key">Frontend</tspan><tspan class="cc">: ...... </tspan><tspan class="value">React, Next.js, Three.js, Tailwind CSS</tspan></text></g>
-  <g clip-path="url(#lc10)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="264" class="cc">. </tspan><tspan class="key">Core</tspan><tspan class="cc">.</tspan><tspan class="key">Backend</tspan><tspan class="cc">: ....... </tspan><tspan class="value">Node.js, Express.js, REST APIs, GraphQL</tspan></text></g>
-  <g clip-path="url(#lc11)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="286" class="cc">. </tspan><tspan class="key">Core</tspan><tspan class="cc">.</tspan><tspan class="key">Database</tspan><tspan class="cc">: ...... </tspan><tspan class="value">PostgreSQL, MongoDB, Supabase, Redis</tspan></text></g>
-  <g clip-path="url(#lc12)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="308" class="cc">. </tspan><tspan class="key">Core</tspan><tspan class="cc">.</tspan><tspan class="key">3D/Motion</tspan><tspan class="cc">: ..... </tspan><tspan class="value">Blender 3D, WebGL Shaders, Motion Design</tspan></text></g>
-  <g clip-path="url(#lc13)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="330" class="cc">. </tspan><tspan class="key">Core</tspan><tspan class="cc">.</tspan><tspan class="key">Infra</tspan><tspan class="cc">: ......... </tspan><tspan class="value">Docker, Vercel, CI/CD, Microservices</tspan></text></g>
-  <g clip-path="url(#lc14)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="352" class="accent">- Neural Uplink</tspan><tspan class="cc"> -———————————————————————————————————————————-—-</tspan></text></g>
-  <g clip-path="url(#lc15)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="374" class="cc">. </tspan><tspan class="key">Grid</tspan><tspan class="cc">.</tspan><tspan class="key">Mail</tspan><tspan class="cc">: ....................... </tspan><tspan class="value">ragerp5iv@gmail.com</tspan></text></g>
-  <g clip-path="url(#lc16)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="396" class="cc">. </tspan><tspan class="key">Grid</tspan><tspan class="cc">.</tspan><tspan class="key">Github</tspan><tspan class="cc">: ..................... </tspan><tspan class="value">MariusBurgerDevelopment</tspan></text></g>
-  <g clip-path="url(#lc17)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="418" class="cc">. </tspan><tspan class="key">Grid</tspan><tspan class="cc">.</tspan><tspan class="key">Portfolio</tspan><tspan class="cc">: .................. </tspan><tspan class="value">marius-port.vercel.app</tspan></text></g>
-  <g clip-path="url(#lc18)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="440" class="cc">. </tspan><tspan class="key">Grid</tspan><tspan class="cc">.</tspan><tspan class="key">Status</tspan><tspan class="cc">: ..................... </tspan><tspan class="value">Available for Visionary Builds</tspan></text></g>
-  <g clip-path="url(#lc19)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="462" class="cc">. </tspan></text></g>
-  <g clip-path="url(#lc20)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="484" class="accent">- Live Telemetry</tspan><tspan class="cc"> -———————————————————————————————————————————-—-</tspan></text></g>
-  <g clip-path="url(#lc21)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="506" class="cc">. </tspan><tspan class="value">Radar locked on supersonic jet heatmap &amp; stats below ↓</tspan></text></g>
+  {right_xml_dark}
 
-  <rect x="522" y="491.0" width="9" height="16" class="cursor-blink" opacity="0">
+  <rect x="522" y="491.0" width="8" height="15" class="cursor-blink" opacity="0">
     <animate attributeName="opacity" values="0;0;1;0;1;0;1;0" keyTimes="0;0.01;0.02;0.3;0.5;0.7;0.85;1" dur="1.4s" begin="3.2s" repeatCount="indefinite"/>
   </rect>
 </g>
 
-<rect x="0" y="-70" width="1180" height="70" fill="url(#scanGrad)" opacity="0.75" style="mix-blend-mode:screen">
+<rect x="0" y="-70" width="1180" height="70" fill="url(#scanGrad)" opacity="0.7" style="mix-blend-mode:screen">
   <animateTransform attributeName="transform" type="translate" from="0 -70" to="0 680" dur="3.8s" repeatCount="indefinite"/>
 </rect>
 
-<rect x="3" y="3" width="1174" height="604" rx="16" fill="none" stroke="url(#borderGrad)" stroke-width="2" opacity="0.8">
-  <animate attributeName="opacity" values="0.5;0.95;0.5" dur="3s" repeatCount="indefinite"/>
+<rect x="3" y="3" width="1174" height="604" rx="16" fill="none" stroke="url(#borderGrad)" stroke-width="2" opacity="0.85">
+  <animate attributeName="opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite"/>
 </rect>
 </svg>
 '''
@@ -170,31 +213,31 @@ dark_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="610"
 light_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="610" viewBox="0 0 1180 610">
 <defs>
   <linearGradient id="asciiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-    <stop offset="0%" stop-color="#4F46E5">
-      <animate attributeName="stop-color" values="#4F46E5;#7C3AED;#0EA5E9;#059669;#4F46E5" dur="10s" repeatCount="indefinite"/>
+    <stop offset="0%" stop-color="#DC2626">
+      <animate attributeName="stop-color" values="#DC2626;#B91C1C;#EF4444;#991B1B;#DC2626" dur="7s" repeatCount="indefinite"/>
     </stop>
-    <stop offset="100%" stop-color="#7C3AED">
-      <animate attributeName="stop-color" values="#7C3AED;#0EA5E9;#059669;#4F46E5;#7C3AED" dur="10s" repeatCount="indefinite"/>
+    <stop offset="100%" stop-color="#991B1B">
+      <animate attributeName="stop-color" values="#991B1B;#DC2626;#B91C1C;#EF4444;#991B1B" dur="7s" repeatCount="indefinite"/>
     </stop>
   </linearGradient>
   <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-    <stop offset="0%" stop-color="#7C3AED"/>
-    <stop offset="50%" stop-color="#0EA5E9"/>
-    <stop offset="100%" stop-color="#059669"/>
+    <stop offset="0%" stop-color="#EF4444"/>
+    <stop offset="50%" stop-color="#DC2626"/>
+    <stop offset="100%" stop-color="#991B1B"/>
   </linearGradient>
   <radialGradient id="bgGlow" cx="30%" cy="20%" r="80%">
-    <stop offset="0%" stop-color="#F8FAFC"/>
-    <stop offset="100%" stop-color="#E2E8F0"/>
+    <stop offset="0%" stop-color="#FFFFFF"/>
+    <stop offset="100%" stop-color="#F4F4F5"/>
   </radialGradient>
   <linearGradient id="scanGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-    <stop offset="0%" stop-color="#0EA5E9" stop-opacity="0"/>
-    <stop offset="45%" stop-color="#0EA5E9" stop-opacity="0.06"/>
-    <stop offset="50%" stop-color="#38BDF8" stop-opacity="0.55"/>
-    <stop offset="55%" stop-color="#0EA5E9" stop-opacity="0.06"/>
-    <stop offset="100%" stop-color="#7C3AED" stop-opacity="0"/>
+    <stop offset="0%" stop-color="#EF4444" stop-opacity="0"/>
+    <stop offset="45%" stop-color="#EF4444" stop-opacity="0.06"/>
+    <stop offset="50%" stop-color="#DC2626" stop-opacity="0.5"/>
+    <stop offset="55%" stop-color="#EF4444" stop-opacity="0.06"/>
+    <stop offset="100%" stop-color="#991B1B" stop-opacity="0"/>
   </linearGradient>
   <pattern id="scanlines" width="4" height="4" patternUnits="userSpaceOnUse">
-    <rect width="4" height="1" fill="#334155" opacity="0.035"/>
+    <rect width="4" height="1" fill="#DC2626" opacity="0.03"/>
   </pattern>
   <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
     <feGaussianBlur stdDeviation="4" result="blur"/>
@@ -232,16 +275,16 @@ light_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="610
   <clipPath id="lc21"><rect x="500" y="490.00" width="0" height="24"><animate attributeName="width" from="0" to="690" dur="0.35s" begin="2.80s" fill="freeze"/></rect></clipPath>
   <style>
     .ascii  {{ font-family: 'Courier New', Consolas, monospace; font-size: 7.4px; fill: url(#asciiGrad); letter-spacing: -0.2px; }}
-    .key    {{ font-family: 'Courier New', Consolas, monospace; font-size: 15px; fill: #0284C7; font-weight: bold; }}
-    .value  {{ font-family: 'Courier New', Consolas, monospace; font-size: 15px; fill: #1E293B; }}
-    .cc     {{ font-family: 'Courier New', Consolas, monospace; font-size: 15px; fill: #94A3B8; }}
-    .head   {{ font-family: 'Courier New', Consolas, monospace; font-size: 17px; fill: #7C3AED; font-weight: bold; }}
-    .accent {{ font-family: 'Courier New', Consolas, monospace; font-size: 15px; fill: #059669; font-weight: bold; }}
+    .key    {{ font-family: 'Courier New', Consolas, monospace; font-size: 13.5px; fill: #DC2626; font-weight: bold; }}
+    .value  {{ font-family: 'Courier New', Consolas, monospace; font-size: 13.5px; fill: #18181B; }}
+    .cc     {{ font-family: 'Courier New', Consolas, monospace; font-size: 13.5px; fill: #A1A1AA; }}
+    .head   {{ font-family: 'Courier New', Consolas, monospace; font-size: 16px; fill: #B91C1C; font-weight: bold; }}
+    .accent {{ font-family: 'Courier New', Consolas, monospace; font-size: 13.5px; fill: #DC2626; font-weight: bold; }}
     text, tspan {{ white-space: pre; }}
-    .term-label {{ font-family: 'Courier New', Consolas, monospace; font-size: 12px; fill: #64748B; letter-spacing: 0.5px; }}
-    .scan-label {{ font-family: 'Courier New', Consolas, monospace; font-size: 10px; fill: #059669; letter-spacing: 1.5px; font-weight: bold; }}
-    .panel-title {{ font-family: 'Courier New', Consolas, monospace; font-size: 11px; fill: #0284C7; letter-spacing: 2px; opacity: 0.8; font-weight: bold; }}
-    .cursor-blink {{ fill: #0EA5E9; }}
+    .term-label {{ font-family: 'Courier New', Consolas, monospace; font-size: 12px; fill: #71717A; letter-spacing: 0.5px; }}
+    .scan-label {{ font-family: 'Courier New', Consolas, monospace; font-size: 10px; fill: #DC2626; letter-spacing: 1.5px; font-weight: bold; }}
+    .panel-title {{ font-family: 'Courier New', Consolas, monospace; font-size: 11px; fill: #DC2626; letter-spacing: 2px; opacity: 0.85; font-weight: bold; }}
+    .cursor-blink {{ fill: #DC2626; }}
   </style>
 </defs>
 
@@ -249,20 +292,20 @@ light_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="610
 <rect width="1180" height="610" rx="18" fill="url(#scanlines)"/>
 
 <g id="titlebar">
-  <rect x="3" y="3" width="1174" height="34" rx="16" fill="#FFFFFF" fill-opacity="0.9"/>
-  <circle cx="24" cy="20" r="5" fill="#F87171"><animate attributeName="opacity" values="1;0.55;1" dur="4s" repeatCount="indefinite"/></circle>
+  <rect x="3" y="3" width="1174" height="34" rx="16" fill="#FFFFFF" fill-opacity="0.95"/>
+  <circle cx="24" cy="20" r="5" fill="#EF4444"><animate attributeName="opacity" values="1;0.55;1" dur="4s" repeatCount="indefinite"/></circle>
   <circle cx="42" cy="20" r="5" fill="#FBBF24"><animate attributeName="opacity" values="1;0.55;1" dur="4s" begin="0.3s" repeatCount="indefinite"/></circle>
-  <circle cx="60" cy="20" r="5" fill="#34D399"><animate attributeName="opacity" values="1;0.55;1" dur="4s" begin="0.6s" repeatCount="indefinite"/></circle>
+  <circle cx="60" cy="20" r="5" fill="#10B981"><animate attributeName="opacity" values="1;0.55;1" dur="4s" begin="0.6s" repeatCount="indefinite"/></circle>
   <text x="590" y="25" text-anchor="middle" class="term-label">marius@devos ~ % ./profile.sh --live</text>
-  <circle cx="1112" cy="20" r="4" fill="#059669">
+  <circle cx="1112" cy="20" r="4" fill="#DC2626">
     <animate attributeName="opacity" values="1;0.2;1" dur="1.2s" repeatCount="indefinite"/>
   </circle>
   <text x="1122" y="24" class="scan-label">ONLINE</text>
 </g>
 
 <g transform="translate(0,38)">
-  <rect x="14" y="26" width="488" height="468" rx="14" fill="#FFFFFF" fill-opacity="0.6" stroke="url(#borderGrad)" stroke-width="1" opacity="0.5"/>
-  <rect x="508" y="10" width="655" height="500" rx="14" fill="#FFFFFF" fill-opacity="0.6" stroke="url(#borderGrad)" stroke-width="1" opacity="0.5"/>
+  <rect x="14" y="26" width="488" height="468" rx="14" fill="#FFFFFF" fill-opacity="0.6" stroke="url(#borderGrad)" stroke-width="1.2" opacity="0.6"/>
+  <rect x="508" y="10" width="655" height="500" rx="14" fill="#FFFFFF" fill-opacity="0.6" stroke="url(#borderGrad)" stroke-width="1.2" opacity="0.6"/>
   <text x="30" y="24" class="panel-title">VISUAL.MAP // EMBLEM DECK</text>
   <text x="524" y="24" class="panel-title">SYSTEM.INFO // NEURAL DECK</text>
 
@@ -272,40 +315,19 @@ light_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="610
     </text>
   </g>
 
-  <g clip-path="url(#lc0)"><text x="520" y="0" fill="#1e293b"><tspan x="520" y="42" class="head">marius@devos</tspan><tspan class="cc"> -——————————————————————————————————————————-—-</tspan></text></g>
-  <g clip-path="url(#lc1)"><text x="520" y="0" fill="#1e293b"><tspan x="520" y="66" class="cc">. </tspan><tspan class="key">Subject</tspan><tspan class="cc">: .......................... </tspan><tspan class="value">Marius Burger</tspan></text></g>
-  <g clip-path="url(#lc2)"><text x="520" y="0" fill="#1e293b"><tspan x="520" y="88" class="cc">. </tspan><tspan class="key">Role</tspan><tspan class="cc">: ............................. </tspan><tspan class="value">Creative Technologist · Full-Stack Eng</tspan></text></g>
-  <g clip-path="url(#lc3)"><text x="520" y="0" fill="#1e293b"><tspan x="520" y="110" class="cc">. </tspan><tspan class="key">Focus</tspan><tspan class="cc">: ............................ </tspan><tspan class="value">3D Web Experiences · UI/UX · Systems</tspan></text></g>
-  <g clip-path="url(#lc4)"><text x="520" y="0" fill="#1e293b"><tspan x="520" y="132" class="cc">. </tspan><tspan class="key">Status</tspan><tspan class="cc">: ........................... </tspan><tspan class="value">Architecting • Innovating • Shipping</tspan></text></g>
-  <g clip-path="url(#lc5)"><text x="520" y="0" fill="#1e293b"><tspan x="520" y="154" class="cc">. </tspan><tspan class="key">ToolChain</tspan><tspan class="cc">: ................. </tspan><tspan class="value">VS Code, Blender, Three.js, Docker, Git</tspan></text></g>
-  <g clip-path="url(#lc6)"><text x="520" y="0" fill="#1e293b"><tspan x="520" y="176" class="cc">. </tspan><tspan class="key">Origin</tspan><tspan class="cc">: ........................... </tspan><tspan class="value">Earth / Cyberspace</tspan></text></g>
-  <g clip-path="url(#lc7)"><text x="520" y="0" fill="#1e293b"><tspan x="520" y="198" class="cc">. </tspan></text></g>
-  <g clip-path="url(#lc8)"><text x="520" y="0" fill="#1e293b"><tspan x="520" y="220" class="cc">. </tspan><tspan class="key">Core</tspan><tspan class="cc">.</tspan><tspan class="key">Lang</tspan><tspan class="cc">: .......... </tspan><tspan class="value">TypeScript, JavaScript, Python, C++, GLSL</tspan></text></g>
-  <g clip-path="url(#lc9)"><text x="520" y="0" fill="#1e293b"><tspan x="520" y="242" class="cc">. </tspan><tspan class="key">Core</tspan><tspan class="cc">.</tspan><tspan class="key">Frontend</tspan><tspan class="cc">: ...... </tspan><tspan class="value">React, Next.js, Three.js, Tailwind CSS</tspan></text></g>
-  <g clip-path="url(#lc10)"><text x="520" y="0" fill="#1e293b"><tspan x="520" y="264" class="cc">. </tspan><tspan class="key">Core</tspan><tspan class="cc">.</tspan><tspan class="key">Backend</tspan><tspan class="cc">: ....... </tspan><tspan class="value">Node.js, Express.js, REST APIs, GraphQL</tspan></text></g>
-  <g clip-path="url(#lc11)"><text x="520" y="0" fill="#1e293b"><tspan x="520" y="286" class="cc">. </tspan><tspan class="key">Core</tspan><tspan class="cc">.</tspan><tspan class="key">Database</tspan><tspan class="cc">: ...... </tspan><tspan class="value">PostgreSQL, MongoDB, Supabase, Redis</tspan></text></g>
-  <g clip-path="url(#lc12)"><text x="520" y="0" fill="#1e293b"><tspan x="520" y="308" class="cc">. </tspan><tspan class="key">Core</tspan><tspan class="cc">.</tspan><tspan class="key">3D/Motion</tspan><tspan class="cc">: ..... </tspan><tspan class="value">Blender 3D, WebGL Shaders, Motion Design</tspan></text></g>
-  <g clip-path="url(#lc13)"><text x="520" y="0" fill="#1e293b"><tspan x="520" y="330" class="cc">. </tspan><tspan class="key">Core</tspan><tspan class="cc">.</tspan><tspan class="key">Infra</tspan><tspan class="cc">: ......... </tspan><tspan class="value">Docker, Vercel, CI/CD, Microservices</tspan></text></g>
-  <g clip-path="url(#lc14)"><text x="520" y="0" fill="#1e293b"><tspan x="520" y="352" class="accent">- Neural Uplink</tspan><tspan class="cc"> -———————————————————————————————————————————-—-</tspan></text></g>
-  <g clip-path="url(#lc15)"><text x="520" y="0" fill="#1e293b"><tspan x="520" y="374" class="cc">. </tspan><tspan class="key">Grid</tspan><tspan class="cc">.</tspan><tspan class="key">Mail</tspan><tspan class="cc">: ....................... </tspan><tspan class="value">ragerp5iv@gmail.com</tspan></text></g>
-  <g clip-path="url(#lc16)"><text x="520" y="0" fill="#1e293b"><tspan x="520" y="396" class="cc">. </tspan><tspan class="key">Grid</tspan><tspan class="cc">.</tspan><tspan class="key">Github</tspan><tspan class="cc">: ..................... </tspan><tspan class="value">MariusBurgerDevelopment</tspan></text></g>
-  <g clip-path="url(#lc17)"><text x="520" y="0" fill="#1e293b"><tspan x="520" y="418" class="cc">. </tspan><tspan class="key">Grid</tspan><tspan class="cc">.</tspan><tspan class="key">Portfolio</tspan><tspan class="cc">: .................. </tspan><tspan class="value">marius-port.vercel.app</tspan></text></g>
-  <g clip-path="url(#lc18)"><text x="520" y="0" fill="#1e293b"><tspan x="520" y="440" class="cc">. </tspan><tspan class="key">Grid</tspan><tspan class="cc">.</tspan><tspan class="key">Status</tspan><tspan class="cc">: ..................... </tspan><tspan class="value">Available for Visionary Builds</tspan></text></g>
-  <g clip-path="url(#lc19)"><text x="520" y="0" fill="#1e293b"><tspan x="520" y="462" class="cc">. </tspan></text></g>
-  <g clip-path="url(#lc20)"><text x="520" y="0" fill="#1e293b"><tspan x="520" y="484" class="accent">- Live Telemetry</tspan><tspan class="cc"> -———————————————————————————————————————————-—-</tspan></text></g>
-  <g clip-path="url(#lc21)"><text x="520" y="0" fill="#1e293b"><tspan x="520" y="506" class="cc">. </tspan><tspan class="value">Radar locked on supersonic jet heatmap &amp; stats below ↓</tspan></text></g>
+  {right_xml_light}
 
-  <rect x="522" y="491.0" width="9" height="16" class="cursor-blink" opacity="0">
+  <rect x="522" y="491.0" width="8" height="15" class="cursor-blink" opacity="0">
     <animate attributeName="opacity" values="0;0;1;0;1;0;1;0" keyTimes="0;0.01;0.02;0.3;0.5;0.7;0.85;1" dur="1.4s" begin="3.2s" repeatCount="indefinite"/>
   </rect>
 </g>
 
-<rect x="0" y="-70" width="1180" height="70" fill="url(#scanGrad)" opacity="0.6" style="mix-blend-mode:multiply">
+<rect x="0" y="-70" width="1180" height="70" fill="url(#scanGrad)" opacity="0.5" style="mix-blend-mode:multiply">
   <animateTransform attributeName="transform" type="translate" from="0 -70" to="0 680" dur="3.8s" repeatCount="indefinite"/>
 </rect>
 
-<rect x="3" y="3" width="1174" height="604" rx="16" fill="none" stroke="url(#borderGrad)" stroke-width="2" opacity="0.8">
-  <animate attributeName="opacity" values="0.5;0.95;0.5" dur="3s" repeatCount="indefinite"/>
+<rect x="3" y="3" width="1174" height="604" rx="16" fill="none" stroke="url(#borderGrad)" stroke-width="2" opacity="0.85">
+  <animate attributeName="opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite"/>
 </rect>
 </svg>
 '''
@@ -316,4 +338,4 @@ with open("dark.svg", "w", encoding="utf-8") as f:
 with open("light.svg", "w", encoding="utf-8") as f:
     f.write(light_svg.strip())
 
-print("Successfully wrote dark.svg and light.svg with official logo emblem!")
+print("Successfully generated dark.svg and light.svg in Crimson Logo Colors with zero text clipping!")

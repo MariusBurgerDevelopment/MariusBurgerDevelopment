@@ -3,12 +3,7 @@
  * Generates an animated "jet over contribution grid" SVG using a GitHub
  * user's REAL contribution calendar (34 weeks x 7 rows).
  *
- * Designed for MariusBurgerDevelopment.
- *
- * Env vars:
- *   GH_USERNAME  - GitHub login to fetch contributions for (default: MariusBurgerDevelopment)
- *   GH_TOKEN     - Token for GraphQL API (falls back to demo pattern if omitted)
- *   OUTPUT_PATH  - where to write the SVG (default: dist/github-jet.svg)
+ * Styled in Marius's Crimson Red / Obsidian Stealth Jet theme.
  */
 
 import fs from "node:fs";
@@ -17,22 +12,22 @@ import path from "node:path";
 const USERNAME = process.env.GH_USERNAME || "MariusBurgerDevelopment";
 const TOKEN = process.env.GH_TOKEN || process.env.GITHUB_TOKEN;
 const OUTPUT = process.env.OUTPUT_PATH || "dist/github-jet.svg";
-const COLS = 34; // weeks shown
+const COLS = 34;
 const ROWS = 7;
 const CELL = 11;
-const STEP = 14; // cell + gap
+const STEP = 14;
 const GRID_X = 20;
 const GRID_Y = 15;
 const WIDTH = 513;
 const HEIGHT = 170;
 const JET_X_START = 35;
 const JET_X_END = 478;
-const LOOP_DUR = 18; // seconds for a sleek, fast sweep
-const MAX_TARGETS = 14; // how many high-activity days the jet fires on
-const FLASH_COLOR = "#22d3ee"; // Neon Cyan flash
-const BULLET_COLOR = "#38bdf8"; // Electric Sky Blue plasma
-const BLAST_COLOR = "#10b981"; // Emerald shockwave blast
-const PAD_Y = 128; // bullet launch origin
+const LOOP_DUR = 18;
+const MAX_TARGETS = 14;
+const FLASH_COLOR = "#ff1744"; // Neon Crimson flash
+const BULLET_COLOR = "#ff3344"; // Red plasma tracer
+const BLAST_COLOR = "#dc2626"; // Crimson shockwave blast
+const PAD_Y = 128;
 
 const QUERY = `
   query($login: String!) {
@@ -94,7 +89,6 @@ function generateMockWeeks() {
   for (let w = 0; w < COLS; w++) {
     const days = [];
     for (let r = 0; r < ROWS; r++) {
-      // Create an authentic realistic high-activity developer pattern
       const rand = Math.random();
       let count = 0;
       let color = colors[0];
@@ -222,30 +216,30 @@ function buildStars() {
     [15, 140, 1.8], [498, 140, 1.5],
   ];
   return pts.map(([x, y, dur]) =>
-    `<circle cx="${x}" cy="${y}" r="1.1" fill="#7dd3fc"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="${dur}s" repeatCount="indefinite"/></circle>`
+    `<circle cx="${x}" cy="${y}" r="1.1" fill="#fca5a5"><animate attributeName="opacity" values="0.15;0.9;0.15" dur="${dur}s" repeatCount="indefinite"/></circle>`
   ).join("\n");
 }
 
 function buildJet() {
   return `<g id="jet">
-  <!-- Supersonic Stealth Fighter / Cyber Jet -->
+  <!-- Supersonic Stealth Fighter / Crimson Cyber Jet -->
   <g transform="translate(0,0)">
     <!-- Stealth Delta Wing -->
-    <polygon points="0,-18 10,7 5,4 -5,4 -10,7" fill="#0284c7" stroke="#38bdf8" stroke-width="1"/>
+    <polygon points="0,-18 10,7 5,4 -5,4 -10,7" fill="#18181b" stroke="#ff1e44" stroke-width="1.2"/>
     <!-- Wing Extensions -->
-    <polygon points="-10,7 -16,13 -5,8" fill="#0369a1"/>
-    <polygon points="10,7 16,13 5,8" fill="#0369a1"/>
-    <!-- Cockpit Canopy Glass -->
-    <ellipse cx="0" cy="-6" rx="2.5" ry="5" fill="#a5f3fc"/>
-    <!-- Dual Afterburner Plasma Thrusters -->
-    <polygon points="-5,8 -2,8 -3.5,18" fill="#22d3ee">
+    <polygon points="-10,7 -16,13 -5,8" fill="#27272a"/>
+    <polygon points="10,7 16,13 5,8" fill="#27272a"/>
+    <!-- Cockpit Canopy Glass (Ruby Glow) -->
+    <ellipse cx="0" cy="-6" rx="2.5" ry="5" fill="#ff4d6d"/>
+    <!-- Dual Afterburner Plasma Thrusters (Crimson & Ember) -->
+    <polygon points="-5,8 -2,8 -3.5,18" fill="#ff1e44">
       <animate attributeName="opacity" values="0.6;1;0.7;1" dur="0.15s" repeatCount="indefinite"/>
     </polygon>
-    <polygon points="2,8 5,8 3.5,18" fill="#22d3ee">
+    <polygon points="2,8 5,8 3.5,18" fill="#ff1e44">
       <animate attributeName="opacity" values="0.7;1;0.6;1" dur="0.15s" repeatCount="indefinite"/>
     </polygon>
     <!-- Core Engine Flame -->
-    <polygon points="-2,8 2,8 0,16" fill="#38bdf8">
+    <polygon points="-2,8 2,8 0,16" fill="#f97316">
       <animate attributeName="opacity" values="0.8;0.4;1;0.8" dur="0.12s" repeatCount="indefinite"/>
     </polygon>
   </g>
@@ -262,8 +256,8 @@ function buildSvg(weeks) {
   const { bullets, blasts } = buildBulletsAndBlasts(targets);
 
   return `<svg viewBox="0 0 ${WIDTH} ${HEIGHT}" xmlns="http://www.w3.org/2000/svg">
-<rect x="0" y="0" width="${WIDTH}" height="${HEIGHT}" fill="#0b1120" rx="10"/>
-<rect x="1" y="1" width="${WIDTH - 2}" height="${HEIGHT - 2}" fill="none" stroke="#1e293b" stroke-width="1" rx="9"/>
+<rect x="0" y="0" width="${WIDTH}" height="${HEIGHT}" fill="#0e080a" rx="10"/>
+<rect x="1" y="1" width="${WIDTH - 2}" height="${HEIGHT - 2}" fill="none" stroke="#271419" stroke-width="1" rx="9"/>
 ${buildStars()}
 <g id="grid">
 ${buildGrid(cells, targets)}</g>
@@ -276,7 +270,7 @@ ${buildJet()}
 }
 
 async function main() {
-  console.log(`Generating Supersonic Jet Heatmap for ${USERNAME}...`);
+  console.log(`Generating Crimson Stealth Jet Heatmap for ${USERNAME}...`);
   const weeks = await fetchWeeks();
   const svg = buildSvg(weeks);
   const outPath = path.resolve(OUTPUT);

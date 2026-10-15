@@ -21,13 +21,13 @@
 
 <p align="center">
   <a href="https://marius-port.vercel.app">
-    <img src="https://img.shields.io/badge/PORTFOLIO-000000?style=for-the-badge&logo=vercel&logoColor=white&color=0B1120&labelColor=0284C7" alt="Portfolio" />
+    <img src="https://img.shields.io/badge/PORTFOLIO-000000?style=for-the-badge&logo=vercel&logoColor=white&color=0E080A&labelColor=DC2626" alt="Portfolio" />
   </a>
   <a href="mailto:ragerp5iv@gmail.com">
-    <img src="https://img.shields.io/badge/DIRECT_UPLINK-000000?style=for-the-badge&logo=gmail&logoColor=white&color=0B1120&labelColor=7C3AED" alt="Email" />
+    <img src="https://img.shields.io/badge/DIRECT_UPLINK-000000?style=for-the-badge&logo=gmail&logoColor=white&color=0E080A&labelColor=B91C1C" alt="Email" />
   </a>
   <a href="https://github.com/MariusBurgerDevelopment">
-    <img src="https://img.shields.io/badge/GITHUB-000000?style=for-the-badge&logo=github&logoColor=white&color=0B1120&labelColor=10B981" alt="GitHub" />
+    <img src="https://img.shields.io/badge/GITHUB-000000?style=for-the-badge&logo=github&logoColor=white&color=0E080A&labelColor=FF1E44" alt="GitHub" />
   </a>
 </p>
 
@@ -37,15 +37,15 @@
 <table align="center" width="100%" border="0" style="border-collapse: collapse;">
   <tr>
     <td width="50%" align="center" style="border: none; padding: 6px;">
-      <img src="https://github-readme-stats.vercel.app/api?username=MariusBurgerDevelopment&show_icons=true&count_private=true&include_all_commits=true&theme=tokyonight&bg_color=0b1120&title_color=22d3ee&text_color=e5e7eb&icon_color=10b981&border_color=22d3ee&border_radius=14&hide_border=false" width="100%" alt="Marius GitHub Stats" />
+      <img src="https://github-readme-stats.vercel.app/api?username=MariusBurgerDevelopment&show_icons=true&count_private=true&include_all_commits=true&theme=tokyonight&bg_color=0e080a&title_color=ff1e44&text_color=f4f4f5&icon_color=ef4444&border_color=ef4444&border_radius=14&hide_border=false" width="100%" alt="Marius GitHub Stats" />
     </td>
     <td width="50%" align="center" style="border: none; padding: 6px;">
-      <img src="https://github-readme-streak-stats.herokuapp.com/?user=MariusBurgerDevelopment&theme=tokyonight&background=0b1120&ring=22d3ee&fire=22d3ee&currStreakLabel=10b981&sideLabels=38bdf8&dates=64748b&border_radius=14&border=22d3ee" width="100%" alt="Marius GitHub Streak" />
+      <img src="https://github-readme-streak-stats.herokuapp.com/?user=MariusBurgerDevelopment&theme=tokyonight&background=0e080a&ring=ff1e44&fire=ff1e44&currStreakLabel=ef4444&sideLabels=ff4d6d&dates=71717a&border_radius=14&border=ef4444" width="100%" alt="Marius GitHub Streak" />
     </td>
   </tr>
   <tr>
     <td colspan="2" align="center" style="border: none; padding: 6px;">
-      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=MariusBurgerDevelopment&layout=compact&theme=tokyonight&bg_color=0b1120&title_color=22d3ee&text_color=e5e7eb&border_color=22d3ee&border_radius=14&hide_border=false" width="100%" alt="Marius Top Languages" />
+      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=MariusBurgerDevelopment&layout=compact&theme=tokyonight&bg_color=0e080a&title_color=ff1e44&text_color=f4f4f5&border_color=ef4444&border_radius=14&hide_border=false" width="100%" alt="Marius Top Languages" />
     </td>
   </tr>
 </table>
