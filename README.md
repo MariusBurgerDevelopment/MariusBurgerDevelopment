@@ -57,28 +57,6 @@
 <br />
 
 <!-- ======================================================== -->
-<!-- FEATURED DEPLOYMENTS & HIGHLIGHTS                        -->
-<!-- ======================================================== -->
-### 🚀 Selected Deployments
-
-```ascii
-┌── [01] NextLevel Studio ─────────────── [ PRODUCTION READY ] ──┐
-│ High-performance digital production studio and creative agency │
-│ Stack: React · Tailwind · WebGL · Framer Motion · Node.js      │
-└────────────────────────────────────────────────────────────────┘
-┌── [02] Aura Brand Identity ──────────── [ COMPLETED ] ─────────┐
-│ Next-generation digital identity, motion assets & 3D branding  │
-│ Stack: Blender 3D · Three.js · GLSL Shaders · Design System    │
-└────────────────────────────────────────────────────────────────┘
-┌── [03] Solaris Digital ──────────────── [ ACTIVE ] ────────────┐
-│ Futuristic WebXR and spatial interactive web application       │
-│ Stack: Three.js · React Three Fiber · TypeScript · Vite        │
-└────────────────────────────────────────────────────────────────┘
-```
-
-<br />
-
-<!-- ======================================================== -->
 <!-- CONNECT & UPLINK FOOTER                                  -->
 <!-- ======================================================== -->
 <p align="center">
