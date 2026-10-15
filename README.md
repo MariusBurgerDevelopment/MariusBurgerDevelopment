@@ -35,24 +35,13 @@
   </a>
 </p>
 
-<br />
-
 <!-- ======================================================== -->
-<!-- LIVE NEURAL SCAN & TELEMETRY                             -->
-<!-- ======================================================== -->
-<p align="center">
-  <img src="https://www.gitskins.com/api/section/system-scan?username=MariusBurgerDevelopment&theme=cyber" width="100%" alt="Cyberpunk System Scan Telemetry" />
-</p>
-
-<br />
-
-<!-- ======================================================== -->
-<!-- DYNAMIC GITHUB STATS & STREAK METRICS                   -->
+<!-- DYNAMIC GITHUB STATS & STREAK METRICS (PRIVATE + PUBLIC) -->
 <!-- ======================================================== -->
 <table align="center" width="100%" border="0" style="border-collapse: collapse;">
   <tr>
     <td width="50%" align="center" style="border: none; padding: 6px;">
-      <img src="https://github-readme-stats.vercel.app/api?username=MariusBurgerDevelopment&show_icons=true&theme=tokyonight&bg_color=0b1120&title_color=22d3ee&text_color=e5e7eb&icon_color=10b981&border_color=22d3ee&border_radius=14&hide_border=false" width="100%" alt="Marius GitHub Stats" />
+      <img src="https://github-readme-stats.vercel.app/api?username=MariusBurgerDevelopment&show_icons=true&count_private=true&include_all_commits=true&theme=tokyonight&bg_color=0b1120&title_color=22d3ee&text_color=e5e7eb&icon_color=10b981&border_color=22d3ee&border_radius=14&hide_border=false" width="100%" alt="Marius GitHub Stats" />
     </td>
     <td width="50%" align="center" style="border: none; padding: 6px;">
       <img src="https://github-readme-streak-stats.herokuapp.com/?user=MariusBurgerDevelopment&theme=tokyonight&background=0b1120&ring=22d3ee&fire=22d3ee&currStreakLabel=10b981&sideLabels=38bdf8&dates=64748b&border_radius=14&border=22d3ee" width="100%" alt="Marius GitHub Streak" />

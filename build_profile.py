@@ -2,8 +2,8 @@ import os
 from pathlib import Path
 from html import escape
 
-# Read generated portrait lines
-with open("portrait_test.txt", "r", encoding="utf-8") as f:
+# Read generated logo ASCII lines
+with open("logo_ascii.txt", "r", encoding="utf-8") as f:
     portrait_lines = [l.rstrip("\r\n") for l in f.readlines()]
 
 # Pad or trim to exactly 53 lines, 91 chars
@@ -17,7 +17,6 @@ y_step = 7.5479
 tspans = []
 for i, line in enumerate(portrait_lines):
     y = start_y + i * y_step
-    # ensure line is up to 91 chars
     line_esc = escape(line)
     tspans.append(f'<tspan x="30" y="{y:.2f}" xml:space="preserve">{line_esc}</tspan>')
 
@@ -120,7 +119,7 @@ dark_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="610"
 <g transform="translate(0,38)">
   <rect x="14" y="26" width="488" height="468" rx="14" fill="#0B1120" fill-opacity="0.4" stroke="url(#borderGrad)" stroke-width="1" opacity="0.4"/>
   <rect x="508" y="10" width="655" height="500" rx="14" fill="#0B1120" fill-opacity="0.4" stroke="url(#borderGrad)" stroke-width="1" opacity="0.4"/>
-  <text x="30" y="24" class="panel-title">VISUAL.MAP // CYBERNETIC AVATAR</text>
+  <text x="30" y="24" class="panel-title">VISUAL.MAP // EMBLEM DECK</text>
   <text x="524" y="24" class="panel-title">SYSTEM.INFO // NEURAL DECK</text>
 
   <g mask="url(#revealMask)">
@@ -133,9 +132,9 @@ dark_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="610"
   <g clip-path="url(#lc1)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="66" class="cc">. </tspan><tspan class="key">Subject</tspan><tspan class="cc">: .......................... </tspan><tspan class="value">Marius Burger</tspan></text></g>
   <g clip-path="url(#lc2)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="88" class="cc">. </tspan><tspan class="key">Role</tspan><tspan class="cc">: ............................. </tspan><tspan class="value">Creative Technologist · Full-Stack Eng</tspan></text></g>
   <g clip-path="url(#lc3)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="110" class="cc">. </tspan><tspan class="key">Focus</tspan><tspan class="cc">: ............................ </tspan><tspan class="value">3D Web Experiences · UI/UX · Systems</tspan></text></g>
-  <g clip-path="url(#lc4)"><text x="520" y="132" class="cc">. </tspan><tspan class="key">Status</tspan><tspan class="cc">: ........................... </tspan><tspan class="value">Architecting • Innovating • Shipping</tspan></text></g>
-  <g clip-path="url(#lc5)"><text x="520" y="154" class="cc">. </tspan><tspan class="key">ToolChain</tspan><tspan class="cc">: ................. </tspan><tspan class="value">VS Code, Blender, Three.js, Docker, Git</tspan></text></g>
-  <g clip-path="url(#lc6)"><text x="520" y="176" class="cc">. </tspan><tspan class="key">Origin</tspan><tspan class="cc">: ........................... </tspan><tspan class="value">Earth / Cyberspace</tspan></text></g>
+  <g clip-path="url(#lc4)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="132" class="cc">. </tspan><tspan class="key">Status</tspan><tspan class="cc">: ........................... </tspan><tspan class="value">Architecting • Innovating • Shipping</tspan></text></g>
+  <g clip-path="url(#lc5)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="154" class="cc">. </tspan><tspan class="key">ToolChain</tspan><tspan class="cc">: ................. </tspan><tspan class="value">VS Code, Blender, Three.js, Docker, Git</tspan></text></g>
+  <g clip-path="url(#lc6)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="176" class="cc">. </tspan><tspan class="key">Origin</tspan><tspan class="cc">: ........................... </tspan><tspan class="value">Earth / Cyberspace</tspan></text></g>
   <g clip-path="url(#lc7)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="198" class="cc">. </tspan></text></g>
   <g clip-path="url(#lc8)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="220" class="cc">. </tspan><tspan class="key">Core</tspan><tspan class="cc">.</tspan><tspan class="key">Lang</tspan><tspan class="cc">: .......... </tspan><tspan class="value">TypeScript, JavaScript, Python, C++, GLSL</tspan></text></g>
   <g clip-path="url(#lc9)"><text x="520" y="0" fill="#dbeafe"><tspan x="520" y="242" class="cc">. </tspan><tspan class="key">Core</tspan><tspan class="cc">.</tspan><tspan class="key">Frontend</tspan><tspan class="cc">: ...... </tspan><tspan class="value">React, Next.js, Three.js, Tailwind CSS</tspan></text></g>
@@ -264,7 +263,7 @@ light_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="610
 <g transform="translate(0,38)">
   <rect x="14" y="26" width="488" height="468" rx="14" fill="#FFFFFF" fill-opacity="0.6" stroke="url(#borderGrad)" stroke-width="1" opacity="0.5"/>
   <rect x="508" y="10" width="655" height="500" rx="14" fill="#FFFFFF" fill-opacity="0.6" stroke="url(#borderGrad)" stroke-width="1" opacity="0.5"/>
-  <text x="30" y="24" class="panel-title">VISUAL.MAP // CYBERNETIC AVATAR</text>
+  <text x="30" y="24" class="panel-title">VISUAL.MAP // EMBLEM DECK</text>
   <text x="524" y="24" class="panel-title">SYSTEM.INFO // NEURAL DECK</text>
 
   <g mask="url(#revealMask)">
@@ -317,4 +316,4 @@ with open("dark.svg", "w", encoding="utf-8") as f:
 with open("light.svg", "w", encoding="utf-8") as f:
     f.write(light_svg.strip())
 
-print("Successfully wrote dark.svg and light.svg")
+print("Successfully wrote dark.svg and light.svg with official logo emblem!")

@@ -24,7 +24,7 @@ jobs:
       - name: Generate Supersonic Jet SVG
         env:
           GH_USERNAME: ${{ github.repository_owner }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
           OUTPUT_PATH: dist/github-jet.svg
         run: node generate.mjs
 
