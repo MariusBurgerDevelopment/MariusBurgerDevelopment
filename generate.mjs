@@ -3,7 +3,7 @@
  * Generates an animated "jet over contribution grid" SVG using a GitHub
  * user's REAL contribution calendar (34 weeks x 7 rows).
  *
- * Styled in Marius's Crimson Red / Obsidian Stealth Jet theme.
+ * Crimson Red / Obsidian Stealth Jet theme matching the Marius Burger logo.
  */
 
 import fs from "node:fs";
@@ -24,10 +24,29 @@ const JET_X_START = 35;
 const JET_X_END = 478;
 const LOOP_DUR = 18;
 const MAX_TARGETS = 14;
-const FLASH_COLOR = "#ff1744"; // Neon Crimson flash
-const BULLET_COLOR = "#ff3344"; // Red plasma tracer
-const BLAST_COLOR = "#dc2626"; // Crimson shockwave blast
+
+// High-impact Ruby & Crimson Laser Effects
+const FLASH_COLOR = "#ffe4e6"; // Brilliant white-hot ruby impact flash
+const BULLET_COLOR = "#ff2a55"; // High-energy red plasma bolt
+const BLAST_COLOR = "#ff1744";  // Neon Crimson shockwave ring
 const PAD_Y = 128;
+
+// Crimson Red heat palette matching the Marius Burger logo:
+const RED_LEVELS = [
+  "#181416", // 0 contributions (deep obsidian / dark charcoal cell)
+  "#4d0c15", // Level 1: Deep burgundy ember
+  "#871523", // Level 2: Rich ruby / dark crimson
+  "#cf1d36", // Level 3: Vibrant scarlet red
+  "#ff1744", // Level 4: Intense neon crimson flame
+];
+
+function getColorForCount(count) {
+  if (!count || count <= 0) return RED_LEVELS[0];
+  if (count <= 2) return RED_LEVELS[1];
+  if (count <= 5) return RED_LEVELS[2];
+  if (count <= 8) return RED_LEVELS[3];
+  return RED_LEVELS[4];
+}
 
 const QUERY = `
   query($login: String!) {
@@ -84,22 +103,18 @@ async function fetchWeeks() {
 
 function generateMockWeeks() {
   const weeks = [];
-  const colors = ["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"];
-  
   for (let w = 0; w < COLS; w++) {
     const days = [];
     for (let r = 0; r < ROWS; r++) {
       const rand = Math.random();
       let count = 0;
-      let color = colors[0];
       if (rand > 0.45) {
-        count = Math.floor(Math.random() * 8) + 1;
-        color = colors[Math.min(Math.floor(count / 2) + 1, 4)];
+        count = Math.floor(Math.random() * 10) + 1;
       }
       days.push({
         date: `2026-${String(Math.floor(w / 4) + 1).padStart(2, "0")}-${String((w % 4) * 7 + r + 1).padStart(2, "0")}`,
         contributionCount: count,
-        color,
+        color: getColorForCount(count),
       });
     }
     weeks.push({ contributionDays: days });
@@ -113,7 +128,7 @@ function buildCells(weeks) {
   const padded = Array.from({ length: padCount }, () => ({
     contributionDays: Array.from({ length: ROWS }, () => ({
       contributionCount: 0,
-      color: "#161b22",
+      color: RED_LEVELS[0],
       date: null,
     })),
   })).concat(recent);
@@ -121,13 +136,14 @@ function buildCells(weeks) {
   const cells = [];
   padded.forEach((week, col) => {
     week.contributionDays.forEach((day, row) => {
+      const count = day.contributionCount || 0;
       cells.push({
         col,
         row,
         x: GRID_X + col * STEP,
         y: GRID_Y + row * STEP,
-        color: day.color || "#161b22",
-        count: day.contributionCount || 0,
+        color: getColorForCount(count),
+        count,
         date: day.date,
       });
     });
@@ -270,7 +286,7 @@ ${buildJet()}
 }
 
 async function main() {
-  console.log(`Generating Crimson Stealth Jet Heatmap for ${USERNAME}...`);
+  console.log(`Generating Crimson Red Heatmap for ${USERNAME}...`);
   const weeks = await fetchWeeks();
   const svg = buildSvg(weeks);
   const outPath = path.resolve(OUTPUT);
