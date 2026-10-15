@@ -20,14 +20,12 @@
 </p>
 
 <p align="center">
-  <a href="https://marius-port.vercel.app">
+  <a href="https://marius-port.vercel.app" target="_blank">
     <img src="https://img.shields.io/badge/PORTFOLIO-000000?style=for-the-badge&logo=vercel&logoColor=white&color=0E080A&labelColor=DC2626" alt="Portfolio" />
   </a>
-  <a href="mailto:ragerp5iv@gmail.com">
-    <img src="https://img.shields.io/badge/DIRECT_UPLINK-000000?style=for-the-badge&logo=gmail&logoColor=white&color=0E080A&labelColor=B91C1C" alt="Email" />
-  </a>
-  <a href="https://github.com/MariusBurgerDevelopment">
-    <img src="https://img.shields.io/badge/GITHUB-000000?style=for-the-badge&logo=github&logoColor=white&color=0E080A&labelColor=FF1E44" alt="GitHub" />
+  &nbsp;&nbsp;
+  <a href="mailto:ragerp5iv@gmail.com?subject=Collaboration%20Inquiry%20%7C%20Marius%20Burger%20Development">
+    <img src="https://img.shields.io/badge/DIRECT_UPLINK-000000?style=for-the-badge&logo=gmail&logoColor=white&color=0E080A&labelColor=FF1744" alt="Direct Uplink / Email" />
   </a>
 </p>
 
