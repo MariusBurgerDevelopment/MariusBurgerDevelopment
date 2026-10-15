@@ -9,16 +9,15 @@
 </p>
 
 <!-- ======================================================== -->
-<!-- SUPERSONIC JET CONTRIBUTION HEATMAP                      -->
+<!-- LIVE TERMINAL TYPING TELEMETRY                           -->
 <!-- ======================================================== -->
 <p align="center">
-  <img
-    src="https://raw.githubusercontent.com/MariusBurgerDevelopment/MariusBurgerDevelopment/main/dist/github-jet.svg"
-    alt="Supersonic Jet Contribution Heatmap"
-    width="100%"
-  />
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=18&pause=1200&color=FF1744&center=true&vCenter=true&width=650&height=40&lines=Creative+3D+Engineer+%26+Spatial+Web+Developer;Full-Stack+Architect+%2F%2F+Next.js+%C2%B7+Supabase+%C2%B7+Three.js;Reverse+Engineering+%26+Autonomous+Bot+Developer;Building+High-Performance+Digital+Experiences" alt="Terminal Typist" />
 </p>
 
+<!-- ======================================================== -->
+<!-- QUICK UPLINK BUTTONS & VISITOR TELEMETRY                 -->
+<!-- ======================================================== -->
 <p align="center">
   <a href="https://marius-port.vercel.app" target="_blank">
     <img src="https://img.shields.io/badge/PORTFOLIO-000000?style=for-the-badge&logo=vercel&logoColor=white&color=0E080A&labelColor=DC2626" alt="Portfolio" />
@@ -31,6 +30,23 @@
   <a href="https://za.linkedin.com/in/marius-burger-a0ba93251" target="_blank">
     <img src="https://img.shields.io/badge/LINKEDIN-000000?style=for-the-badge&logo=linkedin&logoColor=white&color=0E080A&labelColor=0A66C2" alt="LinkedIn" />
   </a>
+  &nbsp;&nbsp;
+  <img src="https://api.visitorbadge.io/api/combined?path=https%3A%2F%2Fgithub.com%2FMariusBurgerDevelopment&label=VISITORS&labelColor=%23ff1744&countColor=%230e080a" alt="Visitor Counter" height="28" />
+</p>
+
+<!-- ======================================================== -->
+<!-- SUPERSONIC JET CONTRIBUTION HEATMAP                      -->
+<!-- ======================================================== -->
+<p align="center">
+  <img
+    src="https://raw.githubusercontent.com/MariusBurgerDevelopment/MariusBurgerDevelopment/main/dist/github-jet.svg"
+    alt="Supersonic Jet Contribution Heatmap"
+    width="100%"
+  />
+</p>
+
+<p align="center">
+  <img src="dist/divider.svg" width="100%" alt="Divider" />
 </p>
 
 <!-- ======================================================== -->
@@ -47,7 +63,22 @@
   </tr>
 </table>
 
-<br />
+<p align="center">
+  <img src="dist/divider.svg" width="100%" alt="Divider" />
+</p>
+
+<!-- ======================================================== -->
+<!-- FEATURED PRODUCTION SPOTLIGHT                            -->
+<!-- ======================================================== -->
+<p align="center">
+  <a href="https://marius-port.vercel.app" target="_blank">
+    <img src="dist/spotlight.svg" width="100%" alt="Featured Live Deployment: übernatural 3D Portfolio" />
+  </a>
+</p>
+
+<p align="center">
+  <img src="dist/divider.svg" width="100%" alt="Divider" />
+</p>
 
 <!-- ======================================================== -->
 <!-- TECH ARSENAL // CYBERNETIC DECK                           -->
@@ -58,8 +89,16 @@
   <img src="https://skillicons.dev/icons?i=threejs,blender,figma,tailwind,react,nextjs,vite,html,css,sass,ts,js,py,lua,cpp,c,cs,nodejs,express,fastapi,graphql,postman,postgres,mongodb,supabase,redis,mysql,sqlite,docker,git,github,linux,bash,vscode,selenium,androidstudio&perline=12&theme=dark" alt="Marius Burger Tech Matrix" />
 </p>
 
-<br />
+<!-- ======================================================== -->
+<!-- CYBERDECK AUDIO FREQUENCIES                              -->
+<!-- ======================================================== -->
+<p align="center">
+  <img src="dist/frequencies.svg" width="100%" alt="Audio Telemetry Frequencies" />
+</p>
 
+<p align="center">
+  <img src="dist/divider.svg" width="100%" alt="Divider" />
+</p>
 
 ```ascii
 ╔═══════════════════════════════════════════════════════════════════════════════╗
