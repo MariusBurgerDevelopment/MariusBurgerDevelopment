@@ -8,6 +8,7 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import { fetchLiveContributionData, generateStatsSvg, generateStreakSvg } from "./tools/generate_stats_cards.mjs";
 
 const USERNAME = process.env.GH_USERNAME || "MariusBurgerDevelopment";
 const TOKEN = process.env.GH_TOKEN || process.env.GITHUB_TOKEN;
@@ -67,38 +68,54 @@ const QUERY = `
 `;
 
 async function fetchWeeks() {
-  if (!TOKEN) {
-    console.log("No GH_TOKEN supplied - generating mock active contribution grid for offline preview.");
-    return generateMockWeeks();
+  console.log(`Fetching live contributions (including private) for ${USERNAME}...`);
+  const liveData = await fetchLiveContributionData();
+  if (liveData && liveData.days && liveData.days.length > 0) {
+    console.log(`Successfully fetched ${liveData.totalContributions} total contributions (${liveData.activeDays} active days).`);
+    const weeks = [];
+    let currentWeek = [];
+    for (const day of liveData.days) {
+      currentWeek.push({
+        date: day.date,
+        contributionCount: day.count,
+        color: getColorForCount(day.count),
+      });
+      if (currentWeek.length === 7) {
+        weeks.push({ contributionDays: currentWeek });
+        currentWeek = [];
+      }
+    }
+    if (currentWeek.length > 0) {
+      weeks.push({ contributionDays: currentWeek });
+    }
+    return { weeks, liveData };
   }
 
-  try {
-    const res = await fetch("https://api.github.com/graphql", {
-      method: "POST",
-      headers: {
-        Authorization: `bearer ${TOKEN}`,
-        "Content-Type": "application/json",
-        "User-Agent": "Marius-Jet-Heatmap-Generator",
-      },
-      body: JSON.stringify({ query: QUERY, variables: { login: USERNAME } }),
-    });
+  if (TOKEN) {
+    try {
+      const res = await fetch("https://api.github.com/graphql", {
+        method: "POST",
+        headers: {
+          Authorization: `bearer ${TOKEN}`,
+          "Content-Type": "application/json",
+          "User-Agent": "Marius-Jet-Heatmap-Generator",
+        },
+        body: JSON.stringify({ query: QUERY, variables: { login: USERNAME } }),
+      });
 
-    if (!res.ok) {
-      console.warn(`GitHub API error ${res.status}: ${await res.text()}`);
-      return generateMockWeeks();
+      if (res.ok) {
+        const json = await res.json();
+        if (json.data?.user?.contributionsCollection?.contributionCalendar?.weeks) {
+          return { weeks: json.data.user.contributionsCollection.contributionCalendar.weeks, liveData: null };
+        }
+      }
+    } catch (err) {
+      console.warn("Failed to fetch GraphQL contributions:", err.message);
     }
-
-    const json = await res.json();
-    if (json.errors || !json.data?.user?.contributionsCollection?.contributionCalendar?.weeks) {
-      console.warn("GraphQL error or user not found, falling back to mock:", json.errors);
-      return generateMockWeeks();
-    }
-
-    return json.data.user.contributionsCollection.contributionCalendar.weeks;
-  } catch (err) {
-    console.warn("Failed to fetch GitHub contributions:", err.message);
-    return generateMockWeeks();
   }
+
+  console.log("No live data or GH_TOKEN supplied - generating mock active contribution grid for offline preview.");
+  return { weeks: generateMockWeeks(), liveData: null };
 }
 
 function generateMockWeeks() {
@@ -286,13 +303,23 @@ ${buildJet()}
 }
 
 async function main() {
-  console.log(`Generating Crimson Red Heatmap for ${USERNAME}...`);
-  const weeks = await fetchWeeks();
+  console.log(`Generating Crimson Red Heatmap & Stats for ${USERNAME}...`);
+  const { weeks, liveData } = await fetchWeeks();
   const svg = buildSvg(weeks);
   const outPath = path.resolve(OUTPUT);
-  fs.mkdirSync(path.dirname(outPath), { recursive: true });
+  const distDir = path.dirname(outPath);
+  fs.mkdirSync(distDir, { recursive: true });
   fs.writeFileSync(outPath, svg, "utf8");
   console.log(`Successfully generated ${outPath}`);
+
+  // Generate Stats and Streak cards
+  const statsSvg = generateStatsSvg(liveData);
+  const streakSvg = generateStreakSvg(liveData);
+  const statsPath = path.join(distDir, "stats.svg");
+  const streakPath = path.join(distDir, "streak.svg");
+  fs.writeFileSync(statsPath, statsSvg, "utf8");
+  fs.writeFileSync(streakPath, streakSvg, "utf8");
+  console.log(`Successfully generated ${statsPath} and ${streakPath}`);
 }
 
 main().catch((err) => {

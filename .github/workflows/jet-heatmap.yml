@@ -31,5 +31,5 @@ jobs:
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore: update live jet heatmap SVG [skip ci]"
-          file_pattern: dist/github-jet.svg
+          commit_message: "chore: update live jet heatmap & profile stats SVGs [skip ci]"
+          file_pattern: "dist/*.svg"

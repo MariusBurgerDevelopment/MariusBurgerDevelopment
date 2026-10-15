@@ -37,15 +37,10 @@
 <table align="center" width="100%" border="0" style="border-collapse: collapse;">
   <tr>
     <td width="50%" align="center" style="border: none; padding: 6px;">
-      <img src="https://github-readme-stats.vercel.app/api?username=MariusBurgerDevelopment&show_icons=true&count_private=true&include_all_commits=true&theme=tokyonight&bg_color=0e080a&title_color=ff1e44&text_color=f4f4f5&icon_color=ef4444&border_color=ef4444&border_radius=14&hide_border=false" width="100%" alt="Marius GitHub Stats" />
+      <img src="dist/stats.svg" width="100%" alt="Marius GitHub Stats" />
     </td>
     <td width="50%" align="center" style="border: none; padding: 6px;">
-      <img src="https://github-readme-streak-stats.herokuapp.com/?user=MariusBurgerDevelopment&theme=tokyonight&background=0e080a&ring=ff1e44&fire=ff1e44&currStreakLabel=ef4444&sideLabels=ff4d6d&dates=71717a&border_radius=14&border=ef4444" width="100%" alt="Marius GitHub Streak" />
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" align="center" style="border: none; padding: 6px;">
-      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=MariusBurgerDevelopment&layout=compact&theme=tokyonight&bg_color=0e080a&title_color=ff1e44&text_color=f4f4f5&border_color=ef4444&border_radius=14&hide_border=false" width="100%" alt="Marius Top Languages" />
+      <img src="dist/streak.svg" width="100%" alt="Marius GitHub Streak" />
     </td>
   </tr>
 </table>
