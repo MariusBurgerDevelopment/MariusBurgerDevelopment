@@ -1,0 +1,12 @@
+{
+  "name": "marius-github-profile",
+  "version": "1.0.0",
+  "description": "Supersonic animated cyberpunk profile README for Marius Burger",
+  "type": "module",
+  "scripts": {
+    "generate": "node generate.mjs",
+    "build:svg": "python build_profile.py"
+  },
+  "author": "MariusBurgerDevelopment",
+  "license": "MIT"
+}
