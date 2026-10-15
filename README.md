@@ -27,6 +27,10 @@
   <a href="mailto:info.mariusburger@gmail.com?subject=Collaboration%20Inquiry%20%7C%20Marius%20Burger%20Development">
     <img src="https://img.shields.io/badge/DIRECT_UPLINK-000000?style=for-the-badge&logo=gmail&logoColor=white&color=0E080A&labelColor=FF1744" alt="Direct Uplink / Email" />
   </a>
+  &nbsp;&nbsp;
+  <a href="https://za.linkedin.com/in/marius-burger-a0ba93251" target="_blank">
+    <img src="https://img.shields.io/badge/LINKEDIN-000000?style=for-the-badge&logo=linkedin&logoColor=white&color=0E080A&labelColor=0A66C2" alt="LinkedIn" />
+  </a>
 </p>
 
 <!-- ======================================================== -->
@@ -162,6 +166,10 @@
   &nbsp;&nbsp;
   <a href="mailto:info.mariusburger@gmail.com?subject=Collaboration%20Inquiry%20%7C%20Marius%20Burger%20Development">
     <img src="https://img.shields.io/badge/DIRECT_EMAIL-000000?style=for-the-badge&logo=gmail&logoColor=white&color=0E080A&labelColor=FF1744" alt="Email Marius" />
+  </a>
+  &nbsp;&nbsp;
+  <a href="https://za.linkedin.com/in/marius-burger-a0ba93251" target="_blank">
+    <img src="https://img.shields.io/badge/LINKEDIN_PROFILE-000000?style=for-the-badge&logo=linkedin&logoColor=white&color=0E080A&labelColor=0A66C2" alt="LinkedIn Profile" />
   </a>
   &nbsp;&nbsp;
   <a href="https://github.com/MariusBurgerDevelopment?tab=repositories">

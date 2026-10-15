@@ -65,7 +65,7 @@ right_lines = [
     make_line(374, "Grid.Mail", "info.mariusburger@gmail.com"),
     make_line(396, "Grid.Github", "MariusBurgerDevelopment"),
     make_line(418, "Grid.Portfolio", "marius-port.vercel.app"),
-    make_line(440, "Grid.Status", "Available for Visionary Builds"),
+    make_line(440, "Grid.LinkedIn", "in/marius-burger-a0ba93251"),
     # 19: blank
     f'<tspan x="520" y="462" class="cc">. </tspan>',
     # 20: telemetry header
