@@ -9,7 +9,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fetchLiveContributionData, generateStatsSvg, generateStreakSvg } from "./tools/generate_stats_cards.mjs";
-import { generateDividerSvg, generateFrequenciesSvg, generateSpotlightSvg } from "./tools/generate_extra_widgets.mjs";
+import { generateDividerSvg, generateSpotlightSvg } from "./tools/generate_extra_widgets.mjs";
 
 const USERNAME = process.env.GH_USERNAME || "MariusBurgerDevelopment";
 const TOKEN = process.env.GH_TOKEN || process.env.GITHUB_TOKEN;
@@ -322,14 +322,12 @@ async function main() {
   fs.writeFileSync(streakPath, streakSvg, "utf8");
   console.log(`Successfully generated ${statsPath} and ${streakPath}`);
 
-  // Generate Extra Widgets: Divider, Frequencies & Spotlight
+  // Generate Extra Widgets: Divider & Spotlight
   const dividerSvg = generateDividerSvg();
-  const freqSvg = generateFrequenciesSvg();
   const spotlightSvg = generateSpotlightSvg();
   fs.writeFileSync(path.join(distDir, "divider.svg"), dividerSvg, "utf8");
-  fs.writeFileSync(path.join(distDir, "frequencies.svg"), freqSvg, "utf8");
   fs.writeFileSync(path.join(distDir, "spotlight.svg"), spotlightSvg, "utf8");
-  console.log(`Successfully generated divider.svg, frequencies.svg, and spotlight.svg in ${distDir}`);
+  console.log(`Successfully generated divider.svg and spotlight.svg in ${distDir}`);
 }
 
 main().catch((err) => {

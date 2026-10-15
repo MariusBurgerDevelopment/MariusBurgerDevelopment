@@ -89,13 +89,6 @@
   <img src="https://skillicons.dev/icons?i=threejs,blender,figma,tailwind,react,nextjs,vite,html,css,sass,ts,js,py,lua,cpp,c,cs,nodejs,express,fastapi,graphql,postman,postgres,mongodb,supabase,redis,mysql,sqlite,docker,git,github,linux,bash,vscode,selenium,androidstudio&perline=12&theme=dark" alt="Marius Burger Tech Matrix" />
 </p>
 
-<!-- ======================================================== -->
-<!-- CYBERDECK AUDIO FREQUENCIES                              -->
-<!-- ======================================================== -->
-<p align="center">
-  <img src="dist/frequencies.svg" width="100%" alt="Audio Telemetry Frequencies" />
-</p>
-
 <p align="center">
   <img src="dist/divider.svg" width="100%" alt="Divider" />
 </p>

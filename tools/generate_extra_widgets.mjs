@@ -15,53 +15,6 @@ export function generateDividerSvg() {
 </svg>`;
 }
 
-export function generateFrequenciesSvg() {
-  const barsCount = 28;
-  const barWidth = 6;
-  const gap = 6;
-  const startX = 300;
-  
-  let barsSvg = "";
-  for (let i = 0; i < barsCount; i++) {
-    const x = startX + i * (barWidth + gap);
-    const dur = (0.7 + (i % 5) * 0.22).toFixed(2);
-    const delay = ((i * 0.08) % 0.8).toFixed(2);
-    const minH = 4 + (i % 3) * 3;
-    const maxH = 26 + (i % 4) * 5;
-    
-    barsSvg += `
-    <rect x="${x}" y="12" width="${barWidth}" height="${minH}" rx="2" fill="#ff1744" opacity="0.85">
-      <animate attributeName="height" values="${minH};${maxH};${minH}" dur="${dur}s" begin="-${delay}s" repeatCount="indefinite" />
-      <animate attributeName="y" values="${32 - minH};${32 - maxH};${32 - minH}" dur="${dur}s" begin="-${delay}s" repeatCount="indefinite" />
-      <animate attributeName="opacity" values="0.45;1;0.45" dur="${dur}s" begin="-${delay}s" repeatCount="indefinite" />
-    </rect>`;
-  }
-
-  return `<svg width="100%" height="48" viewBox="0 0 700 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="freqBg" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#0e080a" />
-      <stop offset="100%" stop-color="#14090c" />
-    </linearGradient>
-  </defs>
-  <rect x="0.5" y="0.5" width="699" height="47" rx="8" fill="url(#freqBg)" stroke="#ef4444" stroke-opacity="0.4" />
-  
-  <!-- Left Telemetry Label -->
-  <g transform="translate(20, 28)" font-family="monospace" font-size="11" font-weight="600" letter-spacing="1">
-    <circle cx="0" cy="-4" r="3" fill="#ff1744" />
-    <text x="12" y="0" fill="#f4f4f5">AUDIO_CORE: <tspan fill="#ff1744">SYNTHESIZING</tspan> [88.4 BPM]</text>
-  </g>
-
-  <!-- Animated Waveform Bars -->
-  ${barsSvg}
-
-  <!-- Right Status -->
-  <g transform="translate(640, 28)" text-anchor="end" font-family="monospace" font-size="10" font-weight="700">
-    <text x="0" y="0" fill="#10b981">LIVE ♫</text>
-  </g>
-</svg>`;
-}
-
 export function generateSpotlightSvg() {
   return `<svg width="100%" height="210" viewBox="0 0 850 210" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
