@@ -16,7 +16,7 @@
 </p>
 
 <!-- ======================================================== -->
-<!-- QUICK UPLINK BUTTONS & VISITOR TELEMETRY                 -->
+<!-- QUICK UPLINK BUTTONS                                     -->
 <!-- ======================================================== -->
 <p align="center">
   <a href="https://marius-port.vercel.app" target="_blank">
@@ -30,8 +30,6 @@
   <a href="https://za.linkedin.com/in/marius-burger-a0ba93251" target="_blank">
     <img src="https://img.shields.io/badge/LINKEDIN-000000?style=for-the-badge&logo=linkedin&logoColor=white&color=0E080A&labelColor=0A66C2" alt="LinkedIn" />
   </a>
-  &nbsp;&nbsp;
-  <img src="https://api.visitorbadge.io/api/combined?path=https%3A%2F%2Fgithub.com%2FMariusBurgerDevelopment&label=VISITORS&labelColor=%23ff1744&countColor=%230e080a" alt="Visitor Counter" height="28" />
 </p>
 
 <!-- ======================================================== -->
