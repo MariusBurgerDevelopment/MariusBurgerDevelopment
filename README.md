@@ -70,7 +70,7 @@
 <!-- ======================================================== -->
 <p align="center">
   <a href="https://marius-port.vercel.app" target="_blank">
-    <img src="dist/spotlight.svg" width="100%" alt="Featured Live Deployment: übernatural 3D Portfolio" />
+    <img src="dist/spotlight.svg" width="100%" alt="Featured Live Deployment: 3D Interactive Portfolio" />
   </a>
 </p>
 
@@ -88,6 +88,10 @@
 </p>
 
 <p align="center">
+  <img src="dist/power-matrix.svg" width="100%" alt="Cybernetic Core Disciplines &amp; Radar Telemetry" />
+</p>
+
+<p align="center">
   <img src="dist/divider.svg" width="100%" alt="Divider" />
 </p>
 
@@ -97,6 +101,30 @@
 ║  — Marius Burger // Engineering Visionary Builds & Cybernetic Experiences     ║
 ╚═══════════════════════════════════════════════════════════════════════════════╝
 ```
+
+<details>
+  <summary><b>▶ [SYSTEM_DIAGNOSTICS] // DEPLOYMENT ENVIRONMENT &amp; SPECIFICATIONS (CLICK TO EXPAND)</b></summary>
+  <br />
+
+```yaml
+HOST_SYSTEM:
+  OS: Windows 11 Pro [Dev Edition] // Subsystem for Linux
+  GPU_PIPELINE: Hardware-Accelerated WebGL 2.0 / WebGPU Architecture
+  PRIMARY_RUNTIMES: Node.js 22+ // Bun // Python 3.12+
+
+SPECIALIZED_DOMAINS:
+  SPATIAL_ENGINEERING: Three.js · React Three Fiber · GLSL Procedural Shaders · Blender 3D
+  FULL_STACK_SYSTEMS: Next.js 15 · TypeScript · Supabase · PostgreSQL · Tailwind CSS
+  AUTOMATION_&_INTELLIGENCE: Antigravity Autonomous Agents · Custom Bots · Selenium · Web Scraping
+
+GLOBAL_UPLINK:
+  GEOLOCATION: Cape Town, South Africa [33.92°S, 18.42°E]
+  TIMEZONE: UTC+2 [SAST]
+  DIRECT_CHANNEL: info.mariusburger@gmail.com
+  SECURITY_PROTOCOL: TLS 1.3 // End-to-End Encrypted Uplink
+```
+
+</details>
 
 <br />
 
