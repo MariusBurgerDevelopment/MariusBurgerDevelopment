@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 from html import escape
+import xml.etree.ElementTree as ET
 
 # Read generated logo ASCII lines
 with open("logo_ascii.txt", "r", encoding="utf-8") as f:
@@ -10,7 +11,7 @@ while len(portrait_lines) < 53:
     portrait_lines.append(" " * 91)
 portrait_lines = portrait_lines[:53]
 
-# Generate tspans
+# Generate tspans for left panel
 start_y = 79.98
 y_step = 7.5479
 tspans = []
@@ -19,56 +20,19 @@ for i, line in enumerate(portrait_lines):
     line_esc = escape(line)
     tspans.append(f'<tspan x="30" y="{y:.2f}" xml:space="preserve">{line_esc}</tspan>')
 
-portrait_tspans = "\n".join(tspans)
+portrait_tspans = "\n    ".join(tspans)
 
 # Helper function to generate clean right-column lines without overflow
-def make_line(key, val, max_key_len=14):
+def make_line(y, key, val, max_key_len=14):
     dots_count = max(2, max_key_len - len(key))
     dots = "." * dots_count
-    # Split key into components if it has a dot
     if "." in key:
         k1, k2 = key.split(".", 1)
         key_markup = f'<tspan class="key">{escape(k1)}</tspan><tspan class="cc">.</tspan><tspan class="key">{escape(k2)}</tspan>'
     else:
         key_markup = f'<tspan class="key">{escape(key)}</tspan>'
-    return f'<tspan class="cc">. </tspan>{key_markup}<tspan class="cc">: {dots} </tspan><tspan class="value">{escape(val)}</tspan>'
+    return f'<tspan x="520" y="{y}" class="cc">. </tspan>{key_markup}<tspan class="cc">: {dots} </tspan><tspan class="value">{escape(val)}</tspan>'
 
-# Right column entries
-right_lines = [
-    # 0: header
-    '<tspan class="head">marius@devos</tspan><tspan class="cc"> -———————————————————————————————————-—-</tspan>',
-    # 1-6: info
-    make_line("Subject", "Marius Burger"),
-    make_line("Role", "Creative Technologist · Full-Stack Eng"),
-    make_line("Focus", "3D Web Experiences · UI/UX · Systems"),
-    make_line("Status", "Architecting • Innovating • Shipping"),
-    make_line("ToolChain", "VS Code, Blender, Three.js, Docker, Git"),
-    make_line("Origin", "Earth / Cyberspace"),
-    # 7: blank
-    '<tspan class="cc">. </tspan>',
-    # 8-13: core stack
-    make_line("Core.Lang", "TypeScript, JavaScript, Python, C++, GLSL"),
-    make_line("Core.Frontend", "React, Next.js, Three.js, Tailwind CSS"),
-    make_line("Core.Backend", "Node.js, Express.js, REST APIs, GraphQL"),
-    make_line("Core.Database", "PostgreSQL, MongoDB, Supabase, Redis"),
-    make_line("Core.3D/Motion", "Blender 3D, WebGL Shaders, Motion Design"),
-    make_line("Core.Infra", "Docker, Vercel, CI/CD, Microservices"),
-    # 14: subheader
-    '<tspan class="accent">- Neural Uplink</tspan><tspan class="cc"> -————————————————————————————————————-—-</tspan>',
-    # 15-18: uplink
-    make_line("Grid.Mail", "ragerp5iv@gmail.com"),
-    make_line("Grid.Github", "MariusBurgerDevelopment"),
-    make_line("Grid.Portfolio", "marius-port.vercel.app"),
-    make_line("Grid.Status", "Available for Visionary Builds"),
-    # 19: blank
-    '<tspan class="cc">. </tspan>',
-    # 20: telemetry header
-    '<tspan class="accent">- Live Telemetry</tspan><tspan class="cc"> -————————————————————————————————————-—-</tspan>',
-    # 21: telemetry info
-    '<tspan class="cc">. </tspan><tspan class="value">Radar locked on supersonic jet heatmap &amp; stats below ↓</tspan>',
-]
-
-# Build right column XML
 y_coords = [
     42, 66, 88, 110, 132, 154, 176, 198,
     220, 242, 264, 286, 308, 330,
@@ -76,12 +40,45 @@ y_coords = [
     484, 506
 ]
 
+right_lines = [
+    # 0: header
+    f'<tspan x="520" y="42" class="head">marius@devos</tspan><tspan class="cc"> -———————————————————————————————————-—-</tspan>',
+    # 1-6: info
+    make_line(66, "Subject", "Marius Burger"),
+    make_line(88, "Role", "Creative Technologist · Full-Stack Eng"),
+    make_line(110, "Focus", "3D Web Experiences · UI/UX · Systems"),
+    make_line(132, "Status", "Architecting • Innovating • Shipping"),
+    make_line(154, "ToolChain", "VS Code, Blender, Three.js, Docker, Git"),
+    make_line(176, "Origin", "Earth / Cyberspace"),
+    # 7: blank
+    f'<tspan x="520" y="198" class="cc">. </tspan>',
+    # 8-13: core stack
+    make_line(220, "Core.Lang", "TypeScript, JavaScript, Python, C++, GLSL"),
+    make_line(242, "Core.Frontend", "React, Next.js, Three.js, Tailwind CSS"),
+    make_line(264, "Core.Backend", "Node.js, Express.js, REST APIs, GraphQL"),
+    make_line(286, "Core.Database", "PostgreSQL, MongoDB, Supabase, Redis"),
+    make_line(308, "Core.3D/Motion", "Blender 3D, WebGL Shaders, Motion Design"),
+    make_line(330, "Core.Infra", "Docker, Vercel, CI/CD, Microservices"),
+    # 14: subheader
+    f'<tspan x="520" y="352" class="accent">- Neural Uplink</tspan><tspan class="cc"> -————————————————————————————————————-—-</tspan>',
+    # 15-18: uplink
+    make_line(374, "Grid.Mail", "ragerp5iv@gmail.com"),
+    make_line(396, "Grid.Github", "MariusBurgerDevelopment"),
+    make_line(418, "Grid.Portfolio", "marius-port.vercel.app"),
+    make_line(440, "Grid.Status", "Available for Visionary Builds"),
+    # 19: blank
+    f'<tspan x="520" y="462" class="cc">. </tspan>',
+    # 20: telemetry header
+    f'<tspan x="520" y="484" class="accent">- Live Telemetry</tspan><tspan class="cc"> -————————————————————————————————————-—-</tspan>',
+    # 21: telemetry info
+    f'<tspan x="520" y="506" class="cc">. </tspan><tspan class="value">Radar locked on supersonic jet heatmap &amp; stats below ↓</tspan>',
+]
+
 right_col_dark = []
 right_col_light = []
 for i, line_content in enumerate(right_lines):
-    y = y_coords[i]
-    right_col_dark.append(f'<g clip-path="url(#lc{i})"><text x="520" y="0" fill="#f4f4f5"><tspan x="520" y="{y}">{line_content}</text></g>')
-    right_col_light.append(f'<g clip-path="url(#lc{i})"><text x="520" y="0" fill="#18181b"><tspan x="520" y="{y}">{line_content}</text></g>')
+    right_col_dark.append(f'<g clip-path="url(#lc{i})"><text x="520" y="0" fill="#f4f4f5">{line_content}</text></g>')
+    right_col_light.append(f'<g clip-path="url(#lc{i})"><text x="520" y="0" fill="#18181b">{line_content}</text></g>')
 
 right_xml_dark = "\n  ".join(right_col_dark)
 right_xml_light = "\n  ".join(right_col_light)
@@ -188,7 +185,7 @@ dark_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="610"
 
   <g mask="url(#revealMask)">
     <text x="30" y="0" class="ascii">
-{portrait_tspans}
+    {portrait_tspans}
     </text>
   </g>
 
@@ -311,7 +308,7 @@ light_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="610
 
   <g mask="url(#revealMask)">
     <text x="30" y="0" class="ascii">
-{portrait_tspans}
+    {portrait_tspans}
     </text>
   </g>
 
@@ -338,4 +335,8 @@ with open("dark.svg", "w", encoding="utf-8") as f:
 with open("light.svg", "w", encoding="utf-8") as f:
     f.write(light_svg.strip())
 
-print("Successfully generated dark.svg and light.svg in Crimson Logo Colors with zero text clipping!")
+# Validate both SVGs with ElementTree
+ET.parse("dark.svg")
+ET.parse("light.svg")
+
+print("SUCCESS: dark.svg and light.svg XML validation passed 100%!")
