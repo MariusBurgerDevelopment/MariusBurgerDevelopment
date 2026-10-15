@@ -24,7 +24,7 @@
     <img src="https://img.shields.io/badge/PORTFOLIO-000000?style=for-the-badge&logo=vercel&logoColor=white&color=0E080A&labelColor=DC2626" alt="Portfolio" />
   </a>
   &nbsp;&nbsp;
-  <a href="mailto:ragerp5iv@gmail.com?subject=Collaboration%20Inquiry%20%7C%20Marius%20Burger%20Development">
+  <a href="mailto:info.mariusburger@gmail.com?subject=Collaboration%20Inquiry%20%7C%20Marius%20Burger%20Development">
     <img src="https://img.shields.io/badge/DIRECT_UPLINK-000000?style=for-the-badge&logo=gmail&logoColor=white&color=0E080A&labelColor=FF1744" alt="Direct Uplink / Email" />
   </a>
 </p>
@@ -50,52 +50,9 @@
 <!-- ======================================================== -->
 ### ⚡ Tech Arsenal // Cybernetic Deck
 
-<table>
-  <tr>
-    <td width="25%" valign="top"><b>🌌 3D & Creative Eng</b></td>
-    <td>
-      <img src="https://img.shields.io/badge/Three.js-000000?style=flat-square&logo=three.js&logoColor=white" />
-      <img src="https://img.shields.io/badge/WebGL_/_GLSL-990000?style=flat-square&logo=opengl&logoColor=white" />
-      <img src="https://img.shields.io/badge/Blender_3D-F5792A?style=flat-square&logo=blender&logoColor=white" />
-      <img src="https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" />
-      <img src="https://img.shields.io/badge/Framer_Motion-0055FF?style=flat-square&logo=framer&logoColor=white" />
-      <img src="https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=figma&logoColor=white" />
-    </td>
-  </tr>
-  <tr>
-    <td width="25%" valign="top"><b>💻 Frontend Architecture</b></td>
-    <td>
-      <img src="https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB" />
-      <img src="https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white" />
-      <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white" />
-      <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" />
-      <img src="https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white" />
-      <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" />
-    </td>
-  </tr>
-  <tr>
-    <td width="25%" valign="top"><b>🛡️ Backend & Core</b></td>
-    <td>
-      <img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white" />
-      <img src="https://img.shields.io/badge/Express.js-000000?style=flat-square&logo=express&logoColor=white" />
-      <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" />
-      <img src="https://img.shields.io/badge/C++-00599C?style=flat-square&logo=cplusplus&logoColor=white" />
-      <img src="https://img.shields.io/badge/REST_APIs-009688?style=flat-square&logo=postman&logoColor=white" />
-      <img src="https://img.shields.io/badge/GraphQL-E10098?style=flat-square&logo=graphql&logoColor=white" />
-    </td>
-  </tr>
-  <tr>
-    <td width="25%" valign="top"><b>💾 Cloud & Infrastructure</b></td>
-    <td>
-      <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white" />
-      <img src="https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white" />
-      <img src="https://img.shields.io/badge/Supabase-3ECF8E?style=flat-square&logo=supabase&logoColor=white" />
-      <img src="https://img.shields.io/badge/Redis-DC382D?style=flat-square&logo=redis&logoColor=white" />
-      <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white" />
-      <img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white" />
-    </td>
-  </tr>
-</table>
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=threejs,blender,figma,tailwind,react,nextjs,ts,vite,nodejs,express,py,cpp,graphql,postgres,mongodb,supabase,redis,docker,git&perline=10&theme=dark" alt="Marius Burger Tech Arsenal" />
+</p>
 
 <br />
 

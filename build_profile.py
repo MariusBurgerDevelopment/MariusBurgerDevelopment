@@ -62,7 +62,7 @@ right_lines = [
     # 14: subheader
     f'<tspan x="520" y="352" class="accent">- Neural Uplink</tspan><tspan class="cc"> -————————————————————————————————————-—-</tspan>',
     # 15-18: uplink
-    make_line(374, "Grid.Mail", "ragerp5iv@gmail.com"),
+    make_line(374, "Grid.Mail", "info.mariusburger@gmail.com"),
     make_line(396, "Grid.Github", "MariusBurgerDevelopment"),
     make_line(418, "Grid.Portfolio", "marius-port.vercel.app"),
     make_line(440, "Grid.Status", "Available for Visionary Builds"),
