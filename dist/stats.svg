@@ -32,14 +32,14 @@
     <g transform="translate(0, 22)">
       <circle cx="5" cy="5" r="3.5" fill="#ff1744" />
       <text x="20" y="9" fill="#f4f4f5" font-weight="500">Total Contributions:</text>
-      <text x="220" y="9" fill="#ff1744" font-weight="700">937</text>
+      <text x="220" y="9" fill="#ff1744" font-weight="700">938</text>
     </g>
 
     <!-- Row 2: Active Coding Days -->
     <g transform="translate(0, 48)">
       <circle cx="5" cy="5" r="3.5" fill="none" stroke="#ef4444" stroke-width="1.5" />
       <text x="20" y="9" fill="#f4f4f5" font-weight="500">Active Coding Days:</text>
-      <text x="220" y="9" fill="#f4f4f5" font-weight="700">71 days</text>
+      <text x="220" y="9" fill="#f4f4f5" font-weight="700">72 days</text>
     </g>
 
     <!-- Row 3: Scope Visibility -->
