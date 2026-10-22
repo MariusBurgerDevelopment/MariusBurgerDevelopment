@@ -247,7 +247,8 @@
 <rect x="482.00" y="15.00" width="11" height="11" rx="2" ry="2" fill="#4d0c15"/>
 <rect x="482.00" y="29.00" width="11" height="11" rx="2" ry="2" fill="#4d0c15"/>
 <rect x="482.00" y="43.00" width="11" height="11" rx="2" ry="2" fill="#4d0c15"/>
-<rect x="482.00" y="57.00" width="11" height="11" rx="2" ry="2" fill="#181416"/>
+<rect x="482.00" y="57.00" width="11" height="11" rx="2" ry="2" fill="#ff1744"/>
+<rect x="482.00" y="71.00" width="11" height="11" rx="2" ry="2" fill="#181416"/>
 </g>
 <g id="bullets">
 <circle cx="249.5" cy="128" r="2.5" fill="#ff2a55"><animate attributeName="cy" dur="18s" repeatCount="indefinite" keyTimes="0;0.222;0.243;1" values="128;128;20.5;20.5"/><animate attributeName="opacity" dur="18s" repeatCount="indefinite" keyTimes="0;0.222;0.243;0.25;1" values="0;1;1;0;0"/></circle>
